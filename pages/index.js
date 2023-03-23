@@ -4,7 +4,6 @@ import {
   Container,
   Heading,
   Box,
-  SimpleGrid,
   Button,
   List,
   ListItem,
@@ -16,7 +15,6 @@ import Paragraph from '../components/paragraph'
 import { BioSection, BioYear } from '../components/bio'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
-import { GridItem } from '../components/grid-item'
 import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin, IoLogoGoogle } from 'react-icons/io5'
 import Image from 'next/image'
 
@@ -35,7 +33,7 @@ const Home = () => (
         bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
         css={{ backdropFilter: 'blur(10px)' }}
       >
-        Hello, I&apos;m an Software Engineering Student based in New York City!
+        Hello, Im an Software Engineering Student based in New York City!
       </Box>
 
       <Box display={{ md: 'flex' }}>
@@ -79,7 +77,7 @@ const Home = () => (
         <Paragraph>
         Jeffrey is a highly motivated Computer Science Student based in New York City, specializing in the fields of Data Engineering and Software Development. Possessing a self-taught programming background, he exhibits a keen sense of drive towards continuous learning and the expansion of his knowledge in the field. 
         <Link href="https://www.jpmorgan.com/global" target="_blank">
-              {' '}jeffrey's dedication{' '}
+              {' '}jeffreys dedication{' '}
             </Link>
          towards studying various subjects related to his area of expertise is evidence of his commitment to staying up-to-date with the latest technologies and techniques. Alongside his academic pursuits, he maintains an active lifestyle, frequently engaging in activities such as gym workouts, boxing, and soccer. Jeffrey is currently enrolled as a student at 
         <Link href="https://www.richmondhillhs.org" target="_blank">
