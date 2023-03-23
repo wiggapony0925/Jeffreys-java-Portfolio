@@ -165,7 +165,7 @@ const Home = () => (
         </Heading>
         <List>
           <ListItem>
-            <Link href="https://github.com/wiggapony0295" target="_blank">
+            <Link href="https://github.com/wiggapony0925" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
