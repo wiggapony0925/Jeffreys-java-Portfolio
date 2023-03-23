@@ -17,9 +17,7 @@ import { BioSection, BioYear } from '../components/bio'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { GridItem } from '../components/grid-item'
-import { IoLogoTwitter, IoLogoInstagram, IoLogoGithub } from 'react-icons/io5'
-import thumbYouTube from '../public/images/links/youtube.png'
-import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png'
+import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin, IoLogoGoogle } from 'react-icons/io5'
 import Image from 'next/image'
 
 const ProfileImage = chakra(Image, {
@@ -37,15 +35,15 @@ const Home = () => (
         bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
         css={{ backdropFilter: 'blur(10px)' }}
       >
-        Hello, I&apos;m an indie app developer based in Japan!
+        Hello, I&apos;m an Software Engineering Student based in New York City!
       </Box>
 
       <Box display={{ md: 'flex' }}>
         <Box flexGrow={1}>
           <Heading as="h2" variant="page-title">
-            Takuya Matsuyama
+            Jeffrey Fernandez
           </Heading>
-          <p>Digital Craftsman ( Artist / Developer / Designer )</p>
+          <p>software Engineer</p>
         </Box>
         <Box
           flexShrink={0}
@@ -79,26 +77,18 @@ const Home = () => (
           Work
         </Heading>
         <Paragraph>
-          Takuya is a freelance and a full-stack developer based in Osaka with a
-          passion for building digital services/stuff he wants. He has a knack
-          for all things launching products, from planning and designing all the
-          way to solving real-life problems with code. When not online, he loves
-          hanging out with his camera. Currently, he is living off of his own
-          product called{' '}
+        Jeffrey is a highly motivated Computer Science Student based in New York City, specializing in the fields of Data Engineering and Software Development. Possessing a self-taught programming background, he exhibits a keen sense of drive towards continuous learning and the expansion of his knowledge in the field. 
+        <Link href="https://www.jpmorgan.com/global" target="_blank">
+              {' '}jeffrey's dedication{' '}
+            </Link>
+         towards studying various subjects related to his area of expertise is evidence of his commitment to staying up-to-date with the latest technologies and techniques. Alongside his academic pursuits, he maintains an active lifestyle, frequently engaging in activities such as gym workouts, boxing, and soccer. Jeffrey is currently enrolled as a student at 
+        <Link href="https://www.richmondhillhs.org" target="_blank">
+              {' '}Richmond Hill High School{' '}
+            </Link> 
+        and is eager to leverage his skills and knowledge to take on the challenges posed by the tech industry.{' '}
           <Link as={NextLink} href="/works/inkdrop" passHref scroll={false}>
             Inkdrop
           </Link>
-          . He publishes content for marketing his products and his YouTube
-          channel called &quot;
-          <Link
-            as={NextLink}
-            href="https://www.youtube.com/devaslife"
-            passHref
-            target="_blank"
-          >
-            Dev as Life
-          </Link>
-          &quot; has more than 100k subscribers.
         </Paragraph>
         <Box align="center" my={4}>
           <Button
@@ -118,22 +108,36 @@ const Home = () => (
           Bio
         </Heading>
         <BioSection>
-          <BioYear>1984</BioYear>
-          Born in Osaka (大阪), Japan.
+          <BioYear>2006</BioYear>
+          Born in 
+          <Link href="https://en.wikipedia.org/wiki/Manta,_Ecuador" target="_blank">
+              {' '}Manta, Ecuador{' '}
+            </Link>
         </BioSection>
         <BioSection>
-          <BioYear>2010</BioYear>
-          Completed the Master&apos;s Program in the Graduate School of
-          Information Science at Nara Institute of Science and Technology
-          (奈良先端科学技術大学院大学情報科学研究科修士課程)
+          <BioYear>2020</BioYear>
+          enrolled in courses, collaborated with programming teams, and applied best practices to engineer software.
         </BioSection>
         <BioSection>
-          <BioYear>2010</BioYear>
-          Worked at Yahoo! Japan (ヤフー株式会社入社)
+          <BioYear>2021</BioYear>
+          studied operating systems, hosted virtual machines, and explored cybersecurity concepts using Kali Linux tools.
         </BioSection>
         <BioSection>
-          <BioYear>2012 to present</BioYear>
+          <BioYear>2022 to present</BioYear>
           Working as a freelancer
+        </BioSection>
+        Accepted for AWS Cloud Computing 1 with{''} 
+            <Link href="https://www.asu.edu" target="_blank">
+              {' '}Arizona State University{' '}
+            </Link>
+            and works with software engineering teams to maintain cloud infrastructure while preparing for the Cloud Practitioner certification exam.
+            <BioSection>
+        <BioYear>2022 to Present</BioYear>
+        developed effective methods for data analysis and organization, 
+        <Link href="https://github.com/wiggapony0925/Python-Virus-Building-Simulation-" target="_blank">
+              {' '}created data graphs{' '}
+            </Link>
+        and applied object-oriented programming.
         </BioSection>
       </Section>
 
@@ -142,15 +146,18 @@ const Home = () => (
           I ♥
         </Heading>
         <Paragraph>
-          Art, Music,{' '}
-          <Link href="https://illust.odoruinu.net/" target="_blank">
-            Drawing
+          Art, reading,{' '}
+          <Link href="https://www.psal.org/profiles/school-profile.aspx#27529" target="_blank">
+            Soccer
           </Link>
-          , Playing Drums,{' '}
-          <Link href="https://500px.com/p/craftzdog" target="_blank">
-            Photography
+          , Movies,{' '}
+          <Link href="https://github.com/wiggapony0925" target="_blank">
+           Programming
           </Link>
-          , Leica, Machine Learning
+          ,  Machine Learning, Boxing,
+          <Link href="https://www.planetfitness.com" target="_blank">
+            {' '}Working Out
+          </Link>
         </Paragraph>
       </Section>
 
@@ -160,85 +167,68 @@ const Home = () => (
         </Heading>
         <List>
           <ListItem>
-            <Link href="https://github.com/craftzdog" target="_blank">
+            <Link href="https://github.com/wiggapony0295" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
                 leftIcon={<IoLogoGithub />}
               >
-                @craftzdog
+                @wiggapony0925
               </Button>
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="https://twitter.com/inkdrop_app" target="_blank">
+            <Link href="https://twitter.com/JeffreyF0925" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
                 leftIcon={<IoLogoTwitter />}
               >
-                @inkdrop_app (English)
+                @JeffreyF0925
               </Button>
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="https://twitter.com/craftzdog" target="_blank">
+            <Link href="https://linkedin.com/in/jeffrey-fernandez-66857b269" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                leftIcon={<IoLogoTwitter />}
+                leftIcon={<IoLogoLinkedin />}
               >
-                @craftzdog (日本語)
+                @Jeffrey Fernandez 
               </Button>
             </Link>
           </ListItem>
           <ListItem>
-            <Link href="https://instagram.com/craftzdog" target="_blank">
+            <Link href="https://mail.google.com/mail/u/0/#sent" target="_blank">
               <Button
                 variant="ghost"
                 colorScheme="teal"
-                leftIcon={<IoLogoInstagram />}
+                leftIcon={<IoLogoGoogle />}
               >
-                @craftzdog
+                ninjeff06@gmail.com
               </Button>
             </Link>
           </ListItem>
         </List>
 
-        <SimpleGrid columns={[1, 2, 2]} gap={6}>
-          <GridItem
-            href="https://www.youtube.com/devaslife"
-            title="Dev as Life"
-            thumbnail={thumbYouTube}
-          >
-            My YouTube channel (&gt;150k subs)
-          </GridItem>
-          <GridItem
-            href="https://www.inkdrop.app/"
-            title="Inkdrop"
-            thumbnail={thumbInkdrop}
-          >
-            A Markdown note-taking app
-          </GridItem>
-        </SimpleGrid>
 
         <Heading as="h3" variant="section-title">
-          Newsletter
+          Resume
         </Heading>
         <p>
-          Join me on a behind-the-scenes coding journey. Weekly updates on
-          projects, tutorials, and videos
+        Please find my resume enclosed and review my software engineering experience and skills.
         </p>
 
         <Box align="center" my={4}>
           <Button
             as={NextLink}
-            href="https://www.devas.life/"
+            href="https://flowcv.com/resume-template/6417d0d1f30fb0dd9bd400da"
             scroll={false}
             leftIcon={<EmailIcon />}
             colorScheme="teal"
           >
-            Sign up my newsletter here
+            Check Out My Resume
           </Button>
         </Box>
       </Section>
