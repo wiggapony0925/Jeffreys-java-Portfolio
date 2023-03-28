@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
-import { IoLogoGithub } from 'react-icons/io5'
+import { IoLogoGithub, IoLogoReact } from 'react-icons/io5'
 
 const LinkItem = ({ href, path, target, children, ...props }) => {
   const active = path === href
@@ -92,6 +92,18 @@ const Navbar = props => {
             <IoLogoGithub />
             Source
           </LinkItem>
+          <LinkItem
+            target="_blank"
+            href="https://jeffreysblog.vercel.app"
+            path={path}
+            display="inline-flex"
+            alignItems="center"
+            style={{ gap: 4 }}
+            pl={2}
+          >
+            <IoLogoReact />
+            Blog
+          </LinkItem>
         </Stack>
 
         <Box flex={1} align="right">
@@ -112,11 +124,17 @@ const Navbar = props => {
                 <MenuItem as={MenuLink} href="/works">
                   Works
                 </MenuItem>
-                <MenuItem
+              <MenuItem
                   as={Link}
                   href="https://github.com/craftzdog/craftzdog-homepagex"
                 >
                   View Source
+                </MenuItem>
+                <MenuItem
+                  as={Link}
+                  href="https://jeffreysblog.vercel.app"
+                >
+                  Blog
                 </MenuItem>
               </MenuList>
             </Menu>

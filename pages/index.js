@@ -84,8 +84,8 @@ const Home = () => (
               {' '}Richmond Hill High School{' '}
             </Link> 
         and is eager to leverage his skills and knowledge to take on the challenges posed by the tech industry.{' '}
-          <Link as={NextLink} href="/works/inkdrop" passHref scroll={false}>
-            Inkdrop
+          <Link as={NextLink} href="https://jeffreysblog.vercel.app" passHref scroll={false}>
+            check out the blog...
           </Link>
         </Paragraph>
         <Box align="center" my={4}>
@@ -221,7 +221,7 @@ const Home = () => (
         <Box align="center" my={4}>
           <Button
             as={NextLink}
-            href="https://flowcv.com/resume-template/6417d0d1f30fb0dd9bd400da"
+            href="https://flowcv.com/resume/lrwhfk8wep"
             scroll={false}
             leftIcon={<EmailIcon />}
             colorScheme="teal"
