@@ -4,6 +4,7 @@ import Section from '../components/section'
 import { WorkGridItem } from '../components/grid-item'
 import thumbWalknote from '../public/images/works/walknote_eyecatch.png'
 import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png'
+import thumbFourPainters from '../public/images/works/the-four-painters_eyecatch.png'
 
 const Works = () => (
   <Layout title="Works">
@@ -26,6 +27,12 @@ const Works = () => (
             thumbnail={thumbWalknote}
           > Plotting a Graph from MERRA-2 NetCDF Files using Python
             
+          </WorkGridItem>
+        </Section>
+
+        <Section>
+        <WorkGridItem id="fourpainters" title="Coming soon: mnist dataset with neural networks" thumbnail={thumbFourPainters}>
+          MNIST provides a baseline for testing image processing systems
           </WorkGridItem>
         </Section>
 

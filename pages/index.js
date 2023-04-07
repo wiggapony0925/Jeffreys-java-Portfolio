@@ -136,7 +136,16 @@ const Home = () => (
               {' '}created data graphs{' '}
             </Link>
         and applied object-oriented programming.
-        </BioSection>
+      </BioSection>
+      <BioSection>
+        <BioYear>2023 - Present</BioYear>
+        NASA Summer Intern, Research Scientist for 
+        <Link href="https://github.com/wiggapony0925/Python-Virus-Building-Simulation-" target="_blank">
+              {' '}CCRI Volcanic Emission Impacts on Climate Systems, Agriculture and Society.{' '}
+            </Link>
+        
+      </BioSection>
+        
       </Section>
 
       <Section delay={0.3}>
