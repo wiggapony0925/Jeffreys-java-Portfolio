@@ -2,7 +2,7 @@ import { Container, Heading, SimpleGrid, } from '@chakra-ui/react'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItem } from '../components/grid-item'
-
+import thumbWalknote from '../public/images/works/walknote_eyecatch.png'
 import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png'
 
 const Works = () => (
@@ -19,8 +19,17 @@ const Works = () => (
           </WorkGridItem>
         </Section>
 
-      </SimpleGrid>
+        <Section>
+        <WorkGridItem
+            id="walknote"
+            title="MERRA-2 NetCDF plotting"
+            thumbnail={thumbWalknote}
+          > Plotting a Graph from MERRA-2 NetCDF Files using Python
+            
+          </WorkGridItem>
+        </Section>
 
+      </SimpleGrid>
     </Container>
   </Layout>
 )
