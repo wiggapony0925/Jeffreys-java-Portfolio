@@ -15,7 +15,7 @@ import {
   import Layout from '../../components/layouts/article'
   
   const Work = () => (
-    <Layout title="The four painters">
+    <Layout title="MNIST dataset with neural networks">
       <Container>
         <Title>
           Neural Networks & MNIST Dataset <Badge>April 2024</Badge>
