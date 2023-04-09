@@ -30,8 +30,8 @@ const Works = () => (
           </WorkGridItem>
         </Section>
 
-        <Section>
-        <WorkGridItem id="fourpainters" title="Coming soon: mnist dataset with neural networks" thumbnail={thumbFourPainters}>
+        <Section delay={0.1}>
+        <WorkGridItem id="fourpainters" title="MNIST dataset with neural networks" thumbnail={thumbFourPainters}>
           MNIST provides a baseline for testing image processing systems
           </WorkGridItem>
         </Section>
