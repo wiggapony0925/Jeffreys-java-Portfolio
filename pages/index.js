@@ -41,7 +41,7 @@ const Home = () => (
           <Heading as="h2" variant="page-title">
             Jeffrey Fernandez
           </Heading>
-          <p>software Engineer</p>
+          <p>Software Engineer</p>
         </Box>
         <Box
           flexShrink={0}
@@ -85,7 +85,7 @@ const Home = () => (
             </Link> 
         and is eager to leverage his skills and knowledge to take on the challenges posed by the tech industry.{' '}
           <Link as={NextLink} href="https://jeffreysblog.vercel.app" passHref scroll={false}>
-            check out the blog...
+            check Out The Blog...
           </Link>
         </Paragraph>
         <Box align="center" my={4}>
@@ -96,7 +96,7 @@ const Home = () => (
             rightIcon={<ChevronRightIcon />}
             colorScheme="teal"
           >
-            My portfolio
+            My Portfolio
           </Button>
         </Box>
       </Section>
