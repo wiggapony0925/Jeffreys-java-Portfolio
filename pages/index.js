@@ -121,16 +121,15 @@ const Home = () => (
           studied operating systems, hosted virtual machines, and explored cybersecurity concepts using Kali Linux tools.
         </BioSection>
         <BioSection>
-          <BioYear>2022 to present</BioYear>
-          Working as a freelancer
-        </BioSection>
+          <BioYear>2022</BioYear>
         Accepted for AWS Cloud Computing 1 with{''} 
             <Link href="https://www.asu.edu" target="_blank">
               {' '}Arizona State University{' '}
             </Link>
             and works with software engineering teams to maintain cloud infrastructure while preparing for the Cloud Practitioner certification exam.
+            </BioSection>
             <BioSection>
-        <BioYear>2022 to Present</BioYear>
+        <BioYear>Now</BioYear>
         developed effective methods for data analysis and organization, 
         <Link href="https://github.com/wiggapony0925/Python-Virus-Building-Simulation-" target="_blank">
               {' '}created data graphs{' '}
@@ -138,8 +137,8 @@ const Home = () => (
         and applied object-oriented programming.
       </BioSection>
       <BioSection>
-        <BioYear>2023 - Present</BioYear>
-        NASA Summer Intern, Research Scientist for 
+        <BioYear>Now</BioYear>
+      NASA Summer Intern, Research Scientist for 
         <Link href="https://github.com/wiggapony0925/Python-Virus-Building-Simulation-" target="_blank">
               {' '}CCRI Volcanic Emission Impacts on Climate Systems, Agriculture and Society.{' '}
             </Link>
