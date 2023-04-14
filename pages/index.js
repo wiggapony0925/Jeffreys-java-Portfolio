@@ -33,7 +33,7 @@ const Home = () => (
         bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
         css={{ backdropFilter: 'blur(10px)' }}
       >
-        Hello, Im an Software Engineering Student based in New York City!
+        Hello, Im an software engineering student based in New York City!
       </Box>
 
       <Box display={{ md: 'flex' }}>
@@ -114,11 +114,11 @@ const Home = () => (
         </BioSection>
         <BioSection>
           <BioYear>2020</BioYear>
-          enrolled in courses, collaborated with programming teams, and applied best practices to engineer software.
+          Enrolled in courses, collaborated with programming teams, and applied best practices to engineer software.
         </BioSection>
         <BioSection>
           <BioYear>2021</BioYear>
-          studied operating systems, hosted virtual machines, and explored cybersecurity concepts using Kali Linux tools.
+          Studied operating systems, hosted virtual machines, and explored cybersecurity concepts using Kali Linux tools.
         </BioSection>
         <BioSection>
           <BioYear>2022</BioYear>
@@ -152,7 +152,7 @@ const Home = () => (
           I ♥
         </Heading>
         <Paragraph>
-          Art, reading,{' '}
+          Art, Reading,{' '}
           <Link href="https://www.psal.org/profiles/school-profile.aspx#27529" target="_blank">
             Soccer
           </Link>
