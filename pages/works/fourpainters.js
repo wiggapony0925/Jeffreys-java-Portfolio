@@ -76,8 +76,11 @@ const Work = () => (
         src="/images/works/the-four-painters_eyecatch.png"
         alt="walknote"
       />
-      <WorkImage src="/images/works/the-four-painters_01.jpg" alt="walknote" />
-      <WorkImage src="/images/works/the-four-painters_02.jpg" alt="walknote" />
+      <WorkImage src="/images/works/the-four-painters_01.png" alt="walknote" />
+      <Heading as="h4" fontSize={16} my={6}>
+        <Center>Created With</Center>
+      </Heading>
+      <WorkImage src="/images/works/the-four-painters_02.png" alt="walknote" />
     </Container>
   </Layout>
 )
