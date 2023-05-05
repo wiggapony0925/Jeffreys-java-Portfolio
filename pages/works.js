@@ -9,8 +9,8 @@ import thumbFourPainters from '../public/images/works/the-four-painters_eyecatch
 const Works = () => (
   <Layout title="Works">
     <Container>
-      <Flex mt={"15"}>
-      <Avatar src='/images/takuya.png' ml='150' mb='3'/>
+      <Flex mt={"15"} align={"center"}>
+      <Avatar src='/images/takuya.png' ml='150' mb='3' alignContent={"center"}/>
       <Box ml='3'>
         <Text fontWeight='bold'>
           Jeffrey Fernandez
