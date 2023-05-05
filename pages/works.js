@@ -1,4 +1,4 @@
-import { Container, Heading, SimpleGrid, } from '@chakra-ui/react'
+import { Container, Heading, SimpleGrid, Badge, Avatar,Flex, Box, Text } from '@chakra-ui/react'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItem } from '../components/grid-item'
@@ -9,6 +9,18 @@ import thumbFourPainters from '../public/images/works/the-four-painters_eyecatch
 const Works = () => (
   <Layout title="Works">
     <Container>
+      <Flex mt={"15"}>
+      <Avatar src='/images/takuya.png' ml='150' mb='3'/>
+      <Box ml='3'>
+        <Text fontWeight='bold'>
+          Jeffrey Fernandez
+          <Badge ml='3' colorScheme='green'>
+            Active
+          </Badge>
+        </Text>
+        <Text fontSize='sm'>Software Engineer</Text>
+      </Box>
+    </Flex>
       <Heading as="h3" fontSize={20} mb={4}>
         Works
       </Heading>
