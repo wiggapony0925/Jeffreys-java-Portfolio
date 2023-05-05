@@ -129,13 +129,18 @@ const Home = () => (
             and works with software engineering teams to maintain cloud infrastructure while preparing for the Cloud Practitioner certification exam.
             </BioSection>
             <BioSection>
-        <BioYear>Now</BioYear>
+        <BioYear>2023</BioYear>
         developed effective methods for data analysis and organization, 
         <Link href="https://github.com/wiggapony0925/Python-Virus-Building-Simulation-" target="_blank">
               {' '}created data graphs{' '}
             </Link>
         and applied object-oriented programming.
       </BioSection>
+      <BioSection>
+          <BioYear>Now</BioYear>
+          
+        Studying artificial intelligence with a focus on deep neural networks involves applying machine learning techniques to develop and improve models.
+        </BioSection>
       <BioSection>
         <BioYear>Now</BioYear>
       NASA Summer Intern, Research Scientist for 
