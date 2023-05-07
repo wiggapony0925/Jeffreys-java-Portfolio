@@ -80,7 +80,8 @@ const Home = () => (
         </Button>
         <Button rightIcon={<ArrowForwardIcon />} 
         colorScheme='teal' 
-        variant='outline'>
+        variant='outline'
+        onClick={() => window.open('tel: +1 929-425-5178', "_self")}>
           Call Me 
           </Button>
       </Stack>
