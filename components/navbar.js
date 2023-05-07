@@ -90,7 +90,7 @@ const Navbar = props => {
             pl={2}
           >
             <IoLogoGithub />
-            Source
+            Github
           </LinkItem>
           <LinkItem
             target="_blank"
