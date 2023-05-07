@@ -22,10 +22,10 @@ import Image from 'next/image'
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
 })
-
+//mt 
 const Home = () => (
   <Layout>
-    <Container>
+    <Container mt={6}> 
       <Box
         borderRadius="lg"
         mb={6}
