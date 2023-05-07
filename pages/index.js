@@ -6,11 +6,12 @@ import {
   Box,
   Button,
   List,
+  Stack,
   ListItem,
   useColorModeValue,
   chakra
 } from '@chakra-ui/react'
-import { ChevronRightIcon, EmailIcon } from '@chakra-ui/icons'
+import { ArrowForwardIcon, ChevronRightIcon, EmailIcon } from '@chakra-ui/icons'
 import Paragraph from '../components/paragraph'
 import { BioSection, BioYear } from '../components/bio'
 import Layout from '../components/layouts/article'
@@ -68,6 +69,16 @@ const Home = () => (
             />
           </Box>
         </Box>
+      </Box>
+      <Box alignContent={"center"} > 
+      <Stack direction="row" spacing={3} mt="2">
+        <Button leftIcon={<EmailIcon />} colorScheme='teal' variant={'solid'}>
+          Email
+        </Button>
+        <Button rightIcon={<ArrowForwardIcon />} colorScheme='teal' variant={'outline'}>
+          Call Me 
+          </Button>
+      </Stack>
       </Box>
 
       <Section delay={0.1}>
