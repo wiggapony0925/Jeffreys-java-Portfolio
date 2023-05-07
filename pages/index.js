@@ -71,7 +71,7 @@ const Home = () => (
         </Box>
       </Box>
       <Box alignContent={"center"} > 
-      <Stack direction="row" spacing={3} mt="2">
+      <Stack direction="row" spacing={3} mt="2" mb={25}>
         <Button leftIcon={<EmailIcon />} 
         colorScheme='teal' 
         variant={'solid'}
