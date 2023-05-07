@@ -72,10 +72,15 @@ const Home = () => (
       </Box>
       <Box alignContent={"center"} > 
       <Stack direction="row" spacing={3} mt="2">
-        <Button leftIcon={<EmailIcon />} colorScheme='teal' variant={'solid'}>
+        <Button leftIcon={<EmailIcon />} 
+        colorScheme='teal' 
+        variant={'solid'}
+        onClick={() => window.open('mailto:ninjeff06@gmail.com?subject=Hello%20from%20Chakra%20UI')}>
           Email
         </Button>
-        <Button rightIcon={<ArrowForwardIcon />} colorScheme='teal' variant={'outline'}>
+        <Button rightIcon={<ArrowForwardIcon />} 
+        colorScheme='teal' 
+        variant='outline'>
           Call Me 
           </Button>
       </Stack>
