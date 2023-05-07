@@ -91,16 +91,16 @@ const Home = () => (
         <Heading as="h3" variant="section-title">
           Work
         </Heading>
-        <Paragraph>
-        Jeffrey is a highly motivated Computer Science Student based in New York City, specializing in the fields of Data Engineering and Software Development. Possessing a self-taught programming background, he exhibits a keen sense of drive towards continuous learning and the expansion of his knowledge in the field. 
-        <Link href="https://www.jpmorgan.com/global" target="_blank">
-              {' '}jeffreys dedication{' '}
-            </Link>
-         towards studying various subjects related to his area of expertise is evidence of his commitment to staying up-to-date with the latest technologies and techniques. Alongside his academic pursuits, he maintains an active lifestyle, frequently engaging in activities such as gym workouts, boxing, and soccer. Jeffrey is currently enrolled as a student at 
-        <Link href="https://www.richmondhillhs.org" target="_blank">
-              {' '}Richmond Hill High School{' '}
-            </Link> 
-        and is eager to leverage his skills and knowledge to take on the challenges posed by the tech industry.{' '}
+        <Paragraph wordBreak="break-all" css={{ hyphens: "none" }}>
+          Jeffrey is a highly motivated Computer Science Student based in New York City, specializing in the fields of Data Engineering and Software Development. Possessing a self-taught programming background, he exhibits a keen sense of drive towards continuous learning and the expansion of his knowledge in the field.{' '}
+          <Link href="https://www.jpmorgan.com/global" target="_blank">
+            {' '}jeffreys dedication{' '}
+          </Link>
+          towards studying various subjects related to his area of expertise is evidence of his commitment to staying up-to-date with the latest technologies and techniques.Jeffrey is currently enrolled as a student at 
+          <Link href="https://www.richmondhillhs.org" target="_blank">
+            {' '}Richmond Hill High School{' '}
+          </Link> 
+          and is eager to leverage his skills and knowledge to take on the challenges posed by the tech industry.{' '}
           <Link as={NextLink} href="https://jeffreysblog.vercel.app" passHref scroll={false}>
             check Out The Blog...
           </Link>
@@ -134,10 +134,6 @@ const Home = () => (
           Enrolled in courses, collaborated with programming teams, and applied best practices to engineer software.
         </BioSection>
         <BioSection>
-          <BioYear>2021</BioYear>
-          Studied operating systems, hosted virtual machines, and explored cybersecurity concepts using Kali Linux tools.
-        </BioSection>
-        <BioSection>
           <BioYear>2022</BioYear>
         Accepted for AWS Cloud Computing 1 with{''} 
             <Link href="https://www.asu.edu" target="_blank">
@@ -154,19 +150,16 @@ const Home = () => (
         and applied object-oriented programming.
       </BioSection>
       <BioSection>
-          <BioYear>Now</BioYear>
-          
-        Studying artificial intelligence with a focus on deep neural networks involves applying machine learning techniques to develop and improve models.
-        </BioSection>
-      <BioSection>
-        <BioYear>Now</BioYear>
-      NASA Summer Intern, Research Scientist for 
+        <BioYear>2023</BioYear>
+       Accepted for NASA Summer Intern, Research Scientist for 
         <Link href="https://github.com/wiggapony0925/Python-Virus-Building-Simulation-" target="_blank">
               {' '}CCRI Volcanic Emission Impacts on Climate Systems, Agriculture and Society.{' '}
             </Link>
-        
       </BioSection>
-        
+      <BioSection>
+          <BioYear>Now</BioYear>
+        Studying artificial intelligence with a focus on deep neural networks involves applying machine learning techniques to develop and improve models.
+        </BioSection>    
       </Section>
 
       <Section delay={0.3}>
