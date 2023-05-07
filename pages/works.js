@@ -1,4 +1,6 @@
-import { Center, Container, Heading, SimpleGrid, Badge, Avatar,Flex, Box, Text} from '@chakra-ui/react'
+import { Center, Container, Heading, SimpleGrid, Badge, Avatar,Flex, Box, Button, Text, HStack} from '@chakra-ui/react'
+import { FaGithub } from 'react-icons/fa'
+import NextLink from 'next/link'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItem } from '../components/grid-item'
@@ -51,8 +53,18 @@ const Works = () => (
           </WorkGridItem>
         </Section>
       </SimpleGrid>
-
-    </Container>
+      <Box align="center" my={4} display='flex' justifyContent="center">
+      <HStack 
+      alignItems={"center"}
+      as={NextLink}
+      href="https://github.com/wiggapony0925?tab=repositories"
+      croll={false}>
+        <Button colorScheme='teal' leftIcon={<FaGithub />}>
+          My Projects
+        </Button>
+      </HStack>
+      </Box>
+     </Container>
   </Layout>
 )
 
