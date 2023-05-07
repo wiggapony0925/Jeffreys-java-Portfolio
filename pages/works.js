@@ -1,4 +1,4 @@
-import { Center, Container, Heading, SimpleGrid, Badge, Avatar,Flex, Box, Text } from '@chakra-ui/react'
+import { Center, Container, Heading, SimpleGrid, Badge, Avatar,Flex, Box, Text} from '@chakra-ui/react'
 import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItem } from '../components/grid-item'
@@ -50,8 +50,8 @@ const Works = () => (
           MNIST provides a baseline for testing image processing systems
           </WorkGridItem>
         </Section>
-
       </SimpleGrid>
+
     </Container>
   </Layout>
 )
