@@ -80,8 +80,8 @@ const WeekOne = () => (
       </UnorderedList>
 
       <WorkImage
-        src="/images/works/careerwise"
-        alt="Careerwise"
+        src="/images/works/excel.png"
+        alt="excel"
       />
     </Container>
   </Layout>

@@ -93,8 +93,8 @@ const Navbar = props => {
             Github
           </LinkItem>
           <LinkItem
-            target="_blank"
-            href="https://jeffreysblog.vercel.app"
+            target="_self"
+            href="/resume"
             path={path}
             display="inline-flex"
             alignItems="center"
@@ -102,7 +102,7 @@ const Navbar = props => {
             pl={2}
           >
             <IoLogoReact />
-            Blog
+            Resume
           </LinkItem>
         </Stack>
 
@@ -132,9 +132,9 @@ const Navbar = props => {
                 </MenuItem>
                 <MenuItem
                   as={Link}
-                  href="https://jeffreysblog.vercel.app"
+                  href="/resume"
                 >
-                  Blog
+                  resume
                 </MenuItem>
               </MenuList>
             </Menu>
