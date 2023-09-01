@@ -38,12 +38,20 @@ const Home = () => (
       </Box>
 
       <Box display={{ md: 'flex' }}>
-        <Box flexGrow={1}>
-          <Heading as="h2" variant="page-title">
-            Jeffrey Fernandez
-          </Heading>
-          <p>Software Engineer | Research Scientist</p>
+      <Box flexGrow={1}>
+        <Heading as="h2" variant="page-title">
+          Jeffrey Fernandez
+        </Heading>
+        <p>Software Engineer | Research Scientist</p>
+        <Box mt={2} mb={2}>
+        <Image
+          src="/images/cloud-badge.png" // Replace with the actual path to your image
+          alt="Cloud Badge"
+          width={50} // Adjust the width and height as needed
+          height={50}
+        />
         </Box>
+      </Box>
         <Box
           flexShrink={0}
           mt={{ base: 4, md: 0 }}
