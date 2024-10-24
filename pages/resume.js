@@ -9,13 +9,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 const Resume = () => {
   const [zoom, setZoom] = useState(1);
   const [isZoomOutLimit, setIsZoomOutLimit] = useState(false);
-
+  const [resumeType, setResumeType] = useState('my_resume'); 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'my_resume.pdf';
+    link.href = resumeType === 'my_resume' ? '/resume.pdf' : '/college_resume.pdf'; // Adjust the download link based on the resume type
+    link.download = resumeType === 'my_resume' ? 'my_resume.pdf' : 'college_resume.pdf'; // Change the file name based on the resume type
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -35,6 +35,11 @@ const Resume = () => {
       setIsZoomOutLimit(true);
       onOpen();
     }
+  };
+
+  const handleResumeSwitch = (type) => {
+    setResumeType(type);
+    setZoom(1); 
   };
 
   return (
@@ -60,6 +65,20 @@ const Resume = () => {
               <Flex mt={4}>
                 <Button
                   colorScheme="pink"
+                  onClick={() => handleResumeSwitch('my_resume')}
+                  marginRight={2}
+                >
+                  View My Resume
+                </Button>
+                <Button
+                  colorScheme="pink"
+                  onClick={() => handleResumeSwitch('college_resume')}
+                  marginRight={2}
+                >
+                  View College Resume
+                </Button>
+                <Button
+                  colorScheme="pink"
                   onClick={handleDownload}
                   marginRight={2}
                 >
@@ -82,7 +101,7 @@ const Resume = () => {
             </Box>
             <Box maxWidth="100%" overflowX="auto">
               <Document
-                file="/resume.pdf"
+                file={resumeType === 'my_resume' ? '/resume.pdf' : '/college_resume.pdf'} // Toggle between resumes
                 options={{
                   cMapUrl: 'cmaps/',
                   cMapPacked: true,
