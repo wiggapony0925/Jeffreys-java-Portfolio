@@ -6,8 +6,8 @@ import {
   Box,
   Button,
   List,
-  Stack,
   ListItem,
+  Stack,
   useColorModeValue,
   chakra,
   Text,
@@ -22,8 +22,6 @@ import Layout from '../components/layouts/article';
 import Section from '../components/section';
 import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
 import Image from 'next/image';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import Carousel styles
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
@@ -52,7 +50,7 @@ const Home = () => {
               Jeffrey Fernandez
             </Heading>
             <Text fontSize="lg" color={useColorModeValue('gray.600', 'gray.300')}>
-              Software Engineer | Research Scientist | Data Enthusiast
+              Software Engineer
             </Text>
             <Box mt={2} mb={4}>
               <Image
@@ -75,11 +73,12 @@ const Home = () => {
               overflow="hidden"
             >
               <ProfileImage
-                src="/images/takuya.png"
+                src="/images/profile_picture.png"
                 alt="Profile image"
                 borderRadius="full"
                 width="100"
                 height="100"
+                objectFit="cover"
               />
             </Box>
           </Box>
@@ -93,7 +92,7 @@ const Home = () => {
                 aria-label="Email"
                 icon={<EmailIcon />}
                 colorScheme="teal"
-                onClick={() => window.open('mailto:ninjeff06@gmail.com?subject=Hello%20from%20Chakra%20UI')}
+                onClick={() => window.open('mailto:ninjeff06@gmail.com?subject=Hello')}
               />
             </Tooltip>
             <Tooltip label="Call Me">
@@ -118,16 +117,16 @@ const Home = () => {
         {/* Work Section */}
         <Section delay={0.1}>
           <Heading as="h3" variant="section-title">
-            Current Role
+            Professional Experience
           </Heading>
           <Paragraph>
-            I am currently employed as a Software Engineer Intern at{' '}
+            I am currently a Software Engineer Apprentice at{' '}
             <Link href="https://www.jpmorgan.com/global" target="_blank">
               JPMorgan Chase (JPMC)
-            </Link>. Here, I specialize in both front-end and back-end solutions for the Dining Technology team, contributing to projects that enhance customer experience and streamline operations.
+            </Link>. I deliver secure, accessible, and scalable web experiences in React and TypeScript using internal software tools to develope scalable applicaitons. My work supports millions of Sapphire Reserve customers across mobile, tablet, and desktop platforms.
           </Paragraph>
           <Paragraph mt={4}>
-            My responsibilities include developing scalable applications using TypeScript, React, and Node.js, collaborating with cross-functional teams, and integrating libraries like Leaflet.js for dynamic restaurant location services.
+            Additionally, I am the Founder & Lead Software Engineer at <Text as="span" fontWeight="bold">JFM Capital Group LLC (PurePay)</Text>, where I architect scalable web ecosystems using Next.js and AWS, leading technical strategy and full-stack development.
           </Paragraph>
           <Box align="center" my={4}>
             <Button
@@ -155,19 +154,39 @@ const Home = () => {
             </Link>
           </BioSection>
           <BioSection>
-            <BioYear>2021 - Present</BioYear>
-            Richmond Hill High School - Co-Captain of Varsity Soccer Team, advanced placement in Computer Science and awarded high honors in Economics and Government.
-          </BioSection>
-          <BioSection>
             <BioYear>2020 - Present</BioYear>
-            Software Engineer Intern at{' '}
+            Software Engineer Apprentice at{' '}
             <Link href="https://www.jpmorgan.com" target="_blank">
               JPMorgan Chase
-            </Link>, contributing to full-stack projects in the Dining Technology team.
+            </Link>.
+          </BioSection>
+          <BioSection>
+            <BioYear>2021 - 2025</BioYear>
+            <Link href="https://www.richmondhillhs.org/" target="_blank">
+              Richmond Hill High School
+            </Link> - CareerWise student.
+          </BioSection>
+          <BioSection>
+            <BioYear>2023</BioYear>
+            Completed AWS Cloud Computing course at{' '}
+            <Link href="https://www.asu.edu/" target="_blank">
+              Arizona State University
+            </Link> and College Now coursework at <Link href="https://www.bmcc.cuny.edu/" target="_blank">BMCC</Link>.
+          </BioSection>
+          <BioSection>
+            <BioYear>2025 - Present</BioYear>
+            Founder & Lead Software Engineer at <Text as="span" fontWeight="bold">JFM Capital Group LLC (PurePay)</Text>.
+          </BioSection>
+          <BioSection>
+            <BioYear>2025 - Present</BioYear>
+            Pursuing BS in Computer Science & Information Security at{' '}
+            <Link href="https://www.jjay.cuny.edu/" target="_blank">
+              John Jay College
+            </Link>.
           </BioSection>
         </Section>
 
-        {/* Cool Features - Timeline */}
+        {/* Timeline Section */}
         <Section delay={0.3}>
           <Heading as="h3" variant="section-title">
             Career Milestones
@@ -177,10 +196,10 @@ const Home = () => {
               <Text as="span" fontWeight="bold">2022:</Text> Accepted as NASA Summer Intern, worked as a Research Scientist for CCRI’s Volcanic Emission Impacts project.
             </Box>
             <Box>
-              <Text as="span" fontWeight="bold">2023:</Text> Completed AWS Certified Cloud Practitioner Certification with Arizona State University.
+              <Text as="span" fontWeight="bold">2023:</Text> Achieved AWS Certified Cloud Practitioner badge.
             </Box>
             <Box>
-              <Text as="span" fontWeight="bold">2022:</Text> Joined JPMorgan Chase as a Software Engineer Intern, actively contributing to key technology initiatives.
+              <Text as="span" fontWeight="bold">2025:</Text> Launched PurePay MVP payment infrastructure integrating Stripe Connect.
             </Box>
           </Stack>
           <Divider my={4} />
@@ -192,7 +211,7 @@ const Home = () => {
             I ♥
           </Heading>
           <Paragraph>
-            Art, Reading, Soccer, Programming, Machine Learning, Boxing, and Working Out.
+            Art, Reading, Soccer, Programming, Machine Learning, Boxing, Finance, and Entrepreneurship.
           </Paragraph>
         </Section>
 
@@ -235,7 +254,7 @@ const Home = () => {
           <Box align="center" my={4}>
             <Button
               as={NextLink}
-              href="https://flowcv.com/resume/lrwhfk8wep"
+              href="/resume"
               scroll={false}
               leftIcon={<EmailIcon />}
               colorScheme="teal"
@@ -243,33 +262,6 @@ const Home = () => {
               View My Resume
             </Button>
           </Box>
-        </Section>
-
-        {/* Gallery Section */}
-        <Section delay={0.5}>
-          <Heading as="h3" variant="section-title">
-            Soccer Gallery
-          </Heading>
-          <Carousel showThumbs={false} infiniteLoop={true} autoPlay>
-            <div>
-              <Image src="/soccer/soccer1.JPG" alt="Soccer Game 1" layout="responsive" width={600} height={400} />
-            </div>
-            <div>
-              <Image src="/soccer/soccer2.jpeg" alt="Soccer Game 2" layout="responsive" width={600} height={400} />
-            </div>
-            <div>
-              <Image src="/soccer/soccer3.jpg" alt="Soccer Game 3" layout="responsive" width={600} height={400} />
-            </div>
-            <div>
-              <Image src="/soccer/soccer4.jpg" alt="Soccer Game 3" layout="responsive" width={600} height={400} />
-            </div>
-            <div>
-              <Image src="/soccer/soccer5.jpg" alt="Soccer Game 3" layout="responsive" width={600} height={400} />
-            </div>
-            <div>
-              <Image src="/soccer/soccer6.jpeg" alt="Soccer Game 3" layout="responsive" width={600} height={400} />
-            </div>
-          </Carousel>
         </Section>
       </Container>
     </Layout>

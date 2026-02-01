@@ -5,17 +5,19 @@ import NextLink from 'next/link';
 import Layout from '../components/layouts/article';
 import Section from '../components/section';
 import { WorkGridItem } from '../components/grid-item';
-import thumbWalknote from '../public/images/works/walknote_eyecatch.png';
-import thumbInkdrop from '../public/images/works/inkdrop_eyecatch.png';
-import thumbFourPainters from '../public/images/works/the-four-painters_eyecatch.png';
-import thumbCareerwise from '../public/images/works/careerwise.png';
+import thumbPlotting from '../public/images/works/plotting.png';
+import thumbVirus from '../public/images/works/virus_simulation.png';
+import thumbMnist from '../public/images/works/mnist.png';
+import thumbWeekOne from '../public/images/works/week_one.png';
+import thumbDictator from '../public/images/works/dictator_ai.png';
+import thumbPurePay from '../public/images/works/purepay.png';
 
 const Works = () => (
   <Layout title="Works">
     <Container>
       <Center>
         <Flex mt="15" align="center">
-          <Avatar src="/images/takuya.png" ml="3" mb="3" alignContent="center" />
+          <Avatar src="/images/profile_picture.png" ml="3" mb="3" alignContent="center" />
           <Box ml="3">
             <Text fontWeight="bold">
               Jeffrey Fernandez
@@ -43,7 +45,7 @@ const Works = () => (
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              <WorkGridItem id="week_one" title="Week One" thumbnail={thumbCareerwise}>
+              <WorkGridItem id="week_one" title="Week One" thumbnail={thumbWeekOne}>
                 This is the first week of the careerwise/business essentials program.
               </WorkGridItem>
             </motion.div>
@@ -58,7 +60,7 @@ const Works = () => (
           transition={{ duration: 0.5 }}
         >
           <Heading as="h3" fontSize={20} mb={4} mt={20} textAlign="center" variant="section-title">
-            Works
+            Feature Projects
           </Heading>
 
           <SimpleGrid columns={[1, 1, 2]} gap={6}>
@@ -66,7 +68,30 @@ const Works = () => (
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              <WorkGridItem id="virusSimulator" title="Python Virus Building Simulation" thumbnail={thumbInkdrop}>
+              <WorkGridItem id="dictator_ai" title="Dictator AI" thumbnail={thumbDictator}>
+                Turn any PDF into an interactive audio experience with real-time text syncing.
+              </WorkGridItem>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <WorkGridItem id="purepay" title="PurePay" thumbnail={thumbPurePay}>
+                A comprehensive backend system for jewelry store layaway management.
+              </WorkGridItem>
+            </motion.div>
+          </SimpleGrid>
+
+          <Heading as="h3" fontSize={20} mb={4} mt={20} textAlign="center" variant="section-title">
+            Past Work
+          </Heading>
+
+          <SimpleGrid columns={[1, 1, 2]} gap={6}>
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <WorkGridItem id="virusSimulator" title="Python Virus Building Simulation" thumbnail={thumbVirus}>
                 Graphs the state of each individual in the building simulation.
               </WorkGridItem>
             </motion.div>
@@ -75,7 +100,7 @@ const Works = () => (
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              <WorkGridItem id="plotting" title="MERRA-2 NetCDF plotting" thumbnail={thumbWalknote}>
+              <WorkGridItem id="plotting" title="MERRA-2 NetCDF plotting" thumbnail={thumbPlotting}>
                 Plotting a Graph from MERRA-2 NetCDF Files using Python.
               </WorkGridItem>
             </motion.div>
@@ -84,7 +109,7 @@ const Works = () => (
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              <WorkGridItem id="MNIST" title="MNIST dataset with neural networks" thumbnail={thumbFourPainters}>
+              <WorkGridItem id="MNIST" title="MNIST dataset with neural networks" thumbnail={thumbMnist}>
                 MNIST provides a baseline for testing image processing systems.
               </WorkGridItem>
             </motion.div>

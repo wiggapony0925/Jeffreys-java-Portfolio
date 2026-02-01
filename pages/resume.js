@@ -1,162 +1,117 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Document, Page, pdfjs } from 'react-pdf';
-import { Box, Button, Heading, Flex, Link, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Container } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
+import { Box, Button, Heading, Flex, Link, Container, useColorModeValue } from '@chakra-ui/react';
+import { MdFileDownload, MdZoomIn, MdZoomOut } from 'react-icons/md';
 import Layout from '../components/layouts/article';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// Dynamically import the PdfViewer wrapper with SSR disabled
+const PdfViewer = dynamic(() => import('../components/pdf-viewer'), {
+  ssr: false,
+  loading: () => <Box p={10} textAlign="center">Loading PDF Support...</Box>
+});
 
 const Resume = () => {
+  const [width, setWidth] = useState(1200);
   const [zoom, setZoom] = useState(1);
-  const [isZoomOutLimit, setIsZoomOutLimit] = useState(false);
-  const [resumeType, setResumeType] = useState('my_resume'); 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [mounted, setMounted] = useState(false);
+
+  // Hooks moved to top level
+  const headerColor = useColorModeValue('teal.600', 'teal.200');
+  const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
+
+  // Responsive PDF sizing
+  useEffect(() => {
+    setMounted(true);
+    const updateWidth = () => {
+      setWidth(window.innerWidth);
+    };
+
+    // Set initial width
+    updateWidth();
+
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = resumeType === 'my_resume' ? '/resume.pdf' : '/college_resume.pdf'; // Adjust the download link based on the resume type
-    link.download = resumeType === 'my_resume' ? 'my_resume.pdf' : 'college_resume.pdf'; // Change the file name based on the resume type
+    link.href = '/resume.pdf';
+    link.download = 'Jeffrey_Fernandez_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  const handleZoomIn = () => {
-    if (zoom < 2) {
-      setZoom((prevZoom) => prevZoom + 0.2);
-      setIsZoomOutLimit(false);
-    }
-  };
+  const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.2, 2.0));
+  const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.2, 0.6));
 
-  const handleZoomOut = () => {
-    if (zoom > 0.4) {
-      setZoom((prevZoom) => prevZoom - 0.2);
-    } else {
-      setIsZoomOutLimit(true);
-      onOpen();
-    }
-  };
+  // Dynamic calculations for a better fit
+  const pdfWidth = Math.min(width * 0.9, 800) * zoom;
 
-  const handleResumeSwitch = (type) => {
-    setResumeType(type);
-    setZoom(1); 
-  };
+  if (!mounted) {
+    return (
+      <Layout title="Resume">
+        <Container maxW="container.lg" centerContent>
+          <Box p={10}>Loading...</Box>
+        </Container>
+      </Layout>
+    )
+  }
 
   return (
-    <Layout title={'resume'}>
-      <Container>
-        <Flex
-          direction="column"
-          align="center"
-          justify="center"
-          minHeight="100vh"
-          p={4}
-        >
+    <Layout title="Resume">
+      <Container maxW="container.lg" centerContent>
+        <Flex direction="column" align="center" justify="center" minHeight="80vh" py={8}>
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Box mb={10}>
-              <Heading as="h1" fontSize="3xl" color="pink.500">
-                My Resume
+            <Box textAlign="center" mb={6}>
+              <Heading as="h1" fontSize="3xl" mb={4} color={headerColor}>
+                Resume
               </Heading>
-              <Flex mt={4}>
+
+              <Flex gap={2} justify="center" wrap="wrap">
                 <Button
-                  colorScheme="pink"
-                  onClick={() => handleResumeSwitch('my_resume')}
-                  marginRight={2}
-                >
-                  View My Resume
-                </Button>
-                <Button
-                  colorScheme="pink"
-                  onClick={() => handleResumeSwitch('college_resume')}
-                  marginRight={2}
-                >
-                  View College Resume
-                </Button>
-                <Button
-                  colorScheme="pink"
+                  leftIcon={<MdFileDownload />}
+                  colorScheme="teal"
                   onClick={handleDownload}
-                  marginRight={2}
                 >
                   Download PDF
                 </Button>
-                <Button
-                  colorScheme={isZoomOutLimit ? 'red' : 'pink'}
-                  onClick={handleZoomIn}
-                  marginRight={2}
-                >
-                  Zoom In
+                <Button onClick={handleZoomOut} isDisabled={zoom <= 0.6}>
+                  <MdZoomOut />
                 </Button>
-                <Button
-                  colorScheme={isZoomOutLimit ? 'red' : 'pink'}
-                  onClick={handleZoomOut}
-                >
-                  Zoom Out
+                <Button onClick={handleZoomIn} isDisabled={zoom >= 2.0}>
+                  <MdZoomIn />
                 </Button>
               </Flex>
             </Box>
-            <Box maxWidth="100%" overflowX="auto">
-              <Document
-                file={resumeType === 'my_resume' ? '/resume.pdf' : '/college_resume.pdf'} // Toggle between resumes
-                options={{
-                  cMapUrl: 'cmaps/',
-                  cMapPacked: true,
-                  renderer: 'svg',
-                }}
-              >
-                <Page
-                  pageNumber={1}
-                  renderAnnotationLayer={false}
-                  renderTextLayer={false}
-                  width={600 * zoom} // Adjust the width to your preference
-                />
-                <Page
-                  pageNumber={2}
-                  renderAnnotationLayer={false}
-                  renderTextLayer={false}
-                  width={600 * zoom} // Adjust the width to your preference
-                />
-              </Document>
+
+            <Box
+              boxShadow="lg"
+              borderRadius="md"
+              overflow="hidden"
+              border="1px solid"
+              borderColor={borderColor}
+            >
+              <PdfViewer
+                file="/resume.pdf"
+                width={pdfWidth}
+              />
             </Box>
-            <Box mt={4}>
-              <Link
-                color="blue.500"
-                href="/"
-                fontWeight="bold"
-                textDecoration="none"
-              >
-                <Button
-                  colorScheme="blue"
-                  variant="outline"
-                  size="lg"
-                  borderRadius="full"
-                  paddingX={8}
-                >
-                  Go Back to Homepage
+
+            <Box mt={8} textAlign="center">
+              <Link href="/" style={{ textDecoration: 'none' }}>
+                <Button variant="outline" colorScheme="teal" borderRadius="full" px={8}>
+                  Back to Homepage
                 </Button>
               </Link>
             </Box>
           </motion.div>
         </Flex>
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Zoom Limit Reached</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              You have reached the minimum zoom level. Further zoom-out is not allowed.
-            </ModalBody>
-            <ModalFooter>
-              <Button colorScheme="pink" onClick={onClose}>
-                Close
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
       </Container>
     </Layout>
   );
