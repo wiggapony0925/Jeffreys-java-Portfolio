@@ -62,6 +62,7 @@ const Navbar = props => {
         wrap="wrap"
         align="center"
         justify="space-between"
+        px={{ base: 3, md: 4 }}
       >
         <Flex align="center" mr={5}>
           <Heading as="h1" size="lg" letterSpacing={'tighter'}>
@@ -116,6 +117,8 @@ const Navbar = props => {
                 icon={<HamburgerIcon />}
                 variant="outline"
                 aria-label="Options"
+                minW="44px"
+                minH="44px"
               />
               <MenuList>
                 <MenuItem as={MenuLink} href="/">

@@ -69,7 +69,7 @@ const Resume = () => {
             transition={{ duration: 0.5 }}
           >
             <Box textAlign="center" mb={6}>
-              <Heading as="h1" fontSize="3xl" mb={4} color={headerColor}>
+              <Heading as="h1" fontSize={{ base: '2xl', md: '3xl' }} mb={4} color={headerColor}>
                 Resume
               </Heading>
 
@@ -96,6 +96,8 @@ const Resume = () => {
               overflow="hidden"
               border="1px solid"
               borderColor={borderColor}
+              maxW="100%"
+              overflowX="auto"
             >
               <PdfViewer
                 file="/resume.pdf"
