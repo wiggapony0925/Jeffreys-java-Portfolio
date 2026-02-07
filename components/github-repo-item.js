@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { Box, Text, LinkBox, LinkOverlay, Badge, HStack, useColorModeValue } from '@chakra-ui/react'
 import { FaStar, FaCodeBranch } from 'react-icons/fa'
 
@@ -37,7 +38,7 @@ export const GitHubRepoItem = ({ repo }) => {
           justifyContent="space-between"
         >
           <Box>
-            <LinkOverlay href={repo.html_url} target="_blank" rel="noopener noreferrer">
+            <LinkOverlay as={NextLink} href={`/works/repo/${repo.name}`} scroll={false}>
               <Text mt={2} fontSize={18} fontWeight="bold" noOfLines={1}>
                 {repo.name}
               </Text>
