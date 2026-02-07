@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   Center,
   Container,
@@ -31,6 +32,17 @@ const GITHUB_USERNAME = 'wiggapony0925'
 
 const Works = ({ repos = [] }) => {
   const sectionBg = useColorModeValue('whiteAlpha.600', 'whiteAlpha.100')
+
+  // Cache repos in localStorage so detail pages can load without server-side API calls
+  useEffect(() => {
+    if (repos.length > 0 && typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('github_repos', JSON.stringify(repos))
+      } catch (e) {
+        // localStorage might be full or unavailable
+      }
+    }
+  }, [repos])
 
   return (
     <Layout title="Works">

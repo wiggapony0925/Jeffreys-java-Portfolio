@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import {
   Container,
   Badge,
@@ -9,6 +11,7 @@ import {
   Box,
   HStack,
   Divider,
+  Spinner,
   useColorModeValue
 } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -20,8 +23,118 @@ import Layout from '../../../components/layouts/article'
 
 const GITHUB_USERNAME = 'wiggapony0925'
 
-const RepoDetail = ({ repo, readme }) => {
-  if (!repo) {
+const RepoDetail = () => {
+  const router = useRouter()
+  const { name } = router.query
+  const [repo, setRepo] = useState(null)
+  const [readme, setReadme] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [notFound, setNotFound] = useState(false)
+
+  useEffect(() => {
+    if (!name) return
+
+    // Validate repo name
+    if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
+      setNotFound(true)
+      setLoading(false)
+      return
+    }
+
+    const controller = new AbortController()
+    const { signal } = controller
+    let foundRepo = null
+
+    // Try to load repo data from localStorage first
+    try {
+      const cached = localStorage.getItem('github_repos')
+      if (cached) {
+        const repos = JSON.parse(cached)
+        foundRepo = repos.find(r => r.name === name) || null
+      }
+    } catch (e) {
+      // localStorage might be unavailable
+    }
+
+    if (foundRepo) {
+      setRepo(foundRepo)
+      setLoading(false)
+    }
+
+    // Always fetch fresh data from API as well (or as primary if not cached)
+    const headers = { Accept: 'application/vnd.github.v3+json' }
+
+    fetch(
+      `https://api.github.com/repos/${GITHUB_USERNAME}/${encodeURIComponent(name)}`,
+      { headers, signal }
+    )
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch repository data')
+        return res.json()
+      })
+      .then(data => {
+        const repoData = {
+          id: data.id,
+          name: data.name || name,
+          description: data.description || 'No description provided.',
+          html_url: data.html_url || '',
+          homepage: data.homepage || null,
+          language: data.language || null,
+          stargazers_count: data.stargazers_count || 0,
+          forks_count: data.forks_count || 0,
+          updated_at: data.updated_at || null,
+          topics: data.topics || []
+        }
+        setRepo(repoData)
+        setLoading(false)
+      })
+      .catch(err => {
+        if (err.name === 'AbortError') return
+        // If we already have cached data, keep it; otherwise show not found
+        if (!foundRepo) {
+          setNotFound(true)
+        }
+        setLoading(false)
+      })
+
+    // Fetch README separately
+    fetch(
+      `https://api.github.com/repos/${GITHUB_USERNAME}/${encodeURIComponent(name)}/readme`,
+      {
+        headers: { Accept: 'application/vnd.github.v3.html' },
+        signal
+      }
+    )
+      .then(res => {
+        if (!res.ok) return null
+        return res.text()
+      })
+      .then(html => {
+        if (html) {
+          setReadme(DOMPurify.sanitize(html))
+        }
+      })
+      .catch(err => {
+        if (err.name === 'AbortError') return
+        // README is optional, fail silently
+      })
+
+    return () => controller.abort()
+  }, [name])
+
+  if (loading) {
+    return (
+      <Layout title="Loading...">
+        <Container>
+          <Center py={20}>
+            <Spinner size="xl" color="teal.400" />
+          </Center>
+        </Container>
+      </Layout>
+    )
+  }
+
+  if (notFound || !repo) {
     return (
       <Layout title="Not Found">
         <Container>
@@ -197,76 +310,3 @@ const ReadmeContent = ({ content }) => {
 }
 
 export default RepoDetail
-
-export async function getServerSideProps({ params, req }) {
-  const { name } = params
-
-  // Validate repo name to prevent injection
-  if (!name || !/^[a-zA-Z0-9._-]+$/.test(name)) {
-    return { notFound: true }
-  }
-
-  let repo = null
-  let readme = null
-
-  const headers = {
-    Accept: 'application/vnd.github.v3+json',
-    ...(process.env.GITHUB_TOKEN && {
-      Authorization: `token ${process.env.GITHUB_TOKEN}`
-    })
-  }
-
-  try {
-    const repoRes = await fetch(
-      `https://api.github.com/repos/${GITHUB_USERNAME}/${encodeURIComponent(name)}`,
-      { headers }
-    )
-    if (repoRes.ok) {
-      const data = await repoRes.json()
-      repo = {
-        id: data.id,
-        name: data.name || name,
-        description: data.description || 'No description provided.',
-        html_url: data.html_url || '',
-        homepage: data.homepage || null,
-        language: data.language || null,
-        stargazers_count: data.stargazers_count || 0,
-        forks_count: data.forks_count || 0,
-        updated_at: data.updated_at || null,
-        topics: data.topics || []
-      }
-    }
-  } catch (error) {
-    console.error('Failed to fetch repo:', error)
-  }
-
-  if (!repo) {
-    return { notFound: true }
-  }
-
-  try {
-    const readmeRes = await fetch(
-      `https://api.github.com/repos/${GITHUB_USERNAME}/${encodeURIComponent(name)}/readme`,
-      {
-        headers: {
-          ...headers,
-          Accept: 'application/vnd.github.v3.html'
-        }
-      }
-    )
-    if (readmeRes.ok) {
-      const rawHtml = await readmeRes.text()
-      readme = DOMPurify.sanitize(rawHtml)
-    }
-  } catch (error) {
-    console.error('Failed to fetch README:', error)
-  }
-
-  return {
-    props: {
-      cookies: req.headers.cookie ?? '',
-      repo,
-      readme: readme || null
-    }
-  }
-}
