@@ -57,8 +57,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
+    "react-markdown": "^8.0.7",
     "react-pdf": "^5.7.2",
     "react-responsive-carousel": "^3.2.23",
+    "remark-gfm": "^3.0.1",
     "sharp": "^0.32.0",
     "three": "^0.148.0"
   },
