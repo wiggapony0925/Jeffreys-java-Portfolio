@@ -82,6 +82,46 @@ npm start
 
 ---
 
+## Publishing to GitHub Packages
+
+This project is configured to publish to the [GitHub Packages npm registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry).
+
+### Authentication
+
+Authenticate using a personal access token (classic) with at least `read:packages` and `write:packages` scopes:
+
+```bash
+npm login --scope=@wiggapony0925 --auth-type=legacy --registry=https://npm.pkg.github.com
+```
+
+Or add the following to your `~/.npmrc`:
+
+```
+//npm.pkg.github.com/:_authToken=YOUR_TOKEN
+```
+
+### Publishing
+
+```bash
+npm publish
+```
+
+### Installing as a Dependency
+
+Add the scoped package to your project:
+
+```bash
+npm install @wiggapony0925/jeffrey-fernandez-portfolio
+```
+
+Ensure your project's `.npmrc` includes:
+
+```
+@wiggapony0925:registry=https://npm.pkg.github.com
+```
+
+---
+
 ## License
 
 This project is proprietary. © 2025 Jeffrey Fernandez. All Rights Reserved.
