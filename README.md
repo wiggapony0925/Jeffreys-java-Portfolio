@@ -1,39 +1,88 @@
-# Jeffrye's Homepage
+# Jeffrey Fernandez — Software Engineer Portfolio
 
-[https://www.craftz.dog/](https://www.craftz.dog/)
+> Personal portfolio website built with Next.js, Chakra UI, Three.js, and Framer Motion — showcasing software engineering projects, professional experience, and technical skills.
 
-## Tutorial
+🌐 **Live Site:** [jeffreys-java-portfolio.vercel.app](https://jeffreys-java-portfolio.vercel.app)
 
-## Stack
+---
 
-- [Next.js](https://nextjs.org/) - A React framework with hybrid static & server rendering, and route pre-fetching, etc.
-- [Chakra UI](https://chakra-ui.com/) - A simple, modular and accessible component library for React
-- [Three.js](https://threejs.org/) - 3D library for JavaScript
-- [Framer Motion](https://www.framer.com/motion/) - An animation library for React
+## About Me
 
-## Project structure
+Hi, I'm **Jeffrey Fernandez** — a Software Engineer currently working at **JPMorgan Chase**, where I build secure, accessible, and scalable web experiences in React and TypeScript for millions of Sapphire Reserve customers across mobile, tablet, and desktop platforms.
+
+I'm also the **Founder & Lead Software Engineer** at **JFM Capital Group LLC (PurePay)**, where I architect scalable web ecosystems using Next.js and AWS.
+
+- 🎓 Pursuing a BS in Computer Science & Information Security at **John Jay College (CUNY)**
+- ☁️ AWS Certified Cloud Practitioner
+- 🚀 Former NASA Summer Research Intern (CCRI — Volcanic Emission Impacts)
+
+---
+
+## Tech Stack
+
+| Layer        | Technologies                                                             |
+|-------------|-------------------------------------------------------------------------|
+| **Framework**   | [Next.js](https://nextjs.org/) — React framework with SSR, SSG, and route pre-fetching |
+| **UI**          | [Chakra UI](https://chakra-ui.com/) — Accessible, modular React component library       |
+| **3D**          | [Three.js](https://threejs.org/) — 3D rendering for interactive visuals                  |
+| **Animation**   | [Framer Motion](https://www.framer.com/motion/) — Production-ready React animations      |
+| **Deployment**  | [Vercel](https://vercel.com/) — Optimized hosting for Next.js                            |
+| **Analytics**   | [Vercel Analytics](https://vercel.com/analytics) — Privacy-friendly web analytics         |
+
+---
+
+## Featured Projects
+
+| Project | Description |
+|---------|-------------|
+| **PurePay** | Comprehensive backend payment infrastructure for jewelry store layaway management, integrating Stripe Connect |
+| **Dictator AI** | Turn any PDF into an interactive audio experience with real-time text syncing |
+| **MERRA-2 NetCDF Plotting** | Data visualization tool for plotting graphs from NASA MERRA-2 NetCDF files using Python |
+| **Virus Building Simulation** | Python simulation that graphs the state of each individual in a building during a virus outbreak |
+| **MNIST Neural Networks** | Image classification baseline using the MNIST dataset with neural networks |
+
+---
+
+## Project Structure
 
 ```
 $PROJECT_ROOT
-│   # Page files
-├── pages
-│   # React component files
-├── components
-│   # Non-react modules
-├── lib
-│   # Static files for images and 3d model file
-└── public
+├── pages          # Next.js page routes and API endpoints
+├── components     # Reusable React UI components and layouts
+├── lib            # Non-React modules (theme config, 3D model loader)
+└── public         # Static assets — images, fonts, 3D models, resume PDF
 ```
+
+---
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Run the development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start the production server
+npm start
+```
+
+---
+
+## Connect
+
+- 💼 [LinkedIn](https://linkedin.com/in/jeffrey-fernandez-66857b269)
+- 🐙 [GitHub](https://github.com/wiggapony0925)
+- 🐦 [Twitter/X](https://twitter.com/JeffreyF0925)
+- 📧 [ninjeff06@gmail.com](mailto:ninjeff06@gmail.com)
+
+---
 
 ## License
 
-MIT License.
-
-- Add a link to [my homepage](https://www.craftz.dog/)
-Check out [LICENSE](./LICENSE) for more detail.
-
----
--taking app? Check out my app called Inkdrop:
-
-
+This project is proprietary. © 2025 Jeffrey Fernandez. All Rights Reserved.
 
