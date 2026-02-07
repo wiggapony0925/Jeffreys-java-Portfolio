@@ -91,9 +91,10 @@ const RepoDetail = () => {
       })
       .catch(err => {
         if (err.name === 'AbortError') return
-        // If we already have cached data, keep it; otherwise show not found
+        // If we already have cached data, keep it; otherwise redirect to GitHub as fallback
         if (!foundRepo) {
-          setNotFound(true)
+          window.location.href = `https://github.com/${GITHUB_USERNAME}/${name}`
+          return
         }
         setLoading(false)
       })
@@ -148,10 +149,10 @@ const RepoDetail = () => {
 
   const updatedDate = repo.updated_at
     ? new Date(repo.updated_at).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
     : null
 
   return (

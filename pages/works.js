@@ -28,6 +28,7 @@ import thumbMnist from '../public/images/works/mnist.png'
 import thumbWeekOne from '../public/images/works/week_one.png'
 import thumbDictator from '../public/images/works/dictator_ai.png'
 import thumbPurePay from '../public/images/works/purepay.png'
+import FeaturedProjects from '../components/featured-projects'
 
 const GITHUB_USERNAME = 'wiggapony0925'
 
@@ -38,13 +39,6 @@ const REPOS_PER_PAGE = 10
 const Works = ({ repos = [] }) => {
   const sectionBg = useColorModeValue('whiteAlpha.600', 'whiteAlpha.100')
   const [visibleCount, setVisibleCount] = useState(REPOS_PER_PAGE)
-  const featuredRepos = useMemo(
-    () =>
-      repos.filter(
-        repo => repo.topics && repo.topics.includes(FEATURED_TOPIC)
-      ),
-    [repos]
-  )
   const otherRepos = useMemo(
     () =>
       repos.filter(
@@ -89,42 +83,7 @@ const Works = ({ repos = [] }) => {
           </Flex>
         </Center>
 
-        {featuredRepos.length > 0 && (
-          <Section>
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Box
-                bg={sectionBg}
-                borderRadius="xl"
-                p={{ base: 3, md: 6 }}
-                mt={8}
-              >
-                <HStack justify="center" mb={4} spacing={2}>
-                  <Icon as={FaStar} boxSize={5} color="yellow.400" />
-                  <Heading
-                    as="h3"
-                    fontSize={20}
-                    textAlign="center"
-                    variant="section-title"
-                  >
-                    GitHub Featured Projects
-                  </Heading>
-                </HStack>
-
-                <SimpleGrid columns={[1, 1, 2]} gap={6}>
-                  {featuredRepos.map(repo => (
-                    <MotionBox key={repo.id}>
-                      <GitHubRepoItem repo={repo} />
-                    </MotionBox>
-                  ))}
-                </SimpleGrid>
-              </Box>
-            </motion.div>
-          </Section>
-        )}
+        <FeaturedProjects repos={repos} viewMode="grid" />
 
         {otherRepos.length > 0 && (
           <Section>
