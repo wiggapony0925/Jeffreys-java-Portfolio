@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   Center,
   Container,
@@ -21,6 +21,7 @@ import Layout from '../components/layouts/article'
 import Section from '../components/section'
 import { WorkGridItem } from '../components/grid-item'
 import { GitHubRepoItem } from '../components/github-repo-item'
+import MotionBox from '../components/motion-box'
 import thumbPlotting from '../public/images/works/plotting.png'
 import thumbVirus from '../public/images/works/virus_simulation.png'
 import thumbMnist from '../public/images/works/mnist.png'
@@ -32,11 +33,20 @@ const GITHUB_USERNAME = 'wiggapony0925'
 
 const FEATURED_TOPIC = 'jeffreys_repo'
 
+const REPOS_PER_PAGE = 10
+
 const Works = ({ repos = [] }) => {
   const sectionBg = useColorModeValue('whiteAlpha.600', 'whiteAlpha.100')
-  const featuredRepos = repos.filter(
-    repo => repo.topics && repo.topics.includes(FEATURED_TOPIC)
+  const [visibleCount, setVisibleCount] = useState(REPOS_PER_PAGE)
+  const featuredRepos = useMemo(
+    () =>
+      repos.filter(
+        repo => repo.topics && repo.topics.includes(FEATURED_TOPIC)
+      ),
+    [repos]
   )
+  const visibleRepos = repos.slice(0, visibleCount)
+  const hasMore = visibleCount < repos.length
 
   // Cache repos in localStorage so detail pages can load without server-side API calls
   useEffect(() => {
@@ -99,13 +109,9 @@ const Works = ({ repos = [] }) => {
 
                 <SimpleGrid columns={[1, 1, 2]} gap={6}>
                   {featuredRepos.map(repo => (
-                    <motion.div
-                      key={repo.id}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
+                    <MotionBox key={repo.id}>
                       <GitHubRepoItem repo={repo} />
-                    </motion.div>
+                    </MotionBox>
                   ))}
                 </SimpleGrid>
               </Box>
@@ -139,28 +145,36 @@ const Works = ({ repos = [] }) => {
                 </HStack>
 
                 <SimpleGrid columns={[1, 1, 2]} gap={6}>
-                  {repos.map(repo => (
-                    <motion.div
-                      key={repo.id}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
+                  {visibleRepos.map(repo => (
+                    <MotionBox key={repo.id}>
                       <GitHubRepoItem repo={repo} />
-                    </motion.div>
+                    </MotionBox>
                   ))}
                 </SimpleGrid>
 
                 <Box align="center" mt={6}>
+                  {hasMore && (
+                    <MotionBox>
+                      <Button
+                        colorScheme="teal"
+                        variant="outline"
+                        size="md"
+                        mb={4}
+                        onClick={() =>
+                          setVisibleCount(prev => prev + REPOS_PER_PAGE)
+                        }
+                      >
+                        Load More ({repos.length - visibleCount} remaining)
+                      </Button>
+                    </MotionBox>
+                  )}
                   <HStack
                     alignItems="center"
                     as={NextLink}
                     href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
                     scroll={false}
                   >
-                    <motion.div
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
+                    <MotionBox>
                       <Button
                         colorScheme="teal"
                         leftIcon={<FaGithub />}
@@ -168,7 +182,7 @@ const Works = ({ repos = [] }) => {
                       >
                         View All on GitHub
                       </Button>
-                    </motion.div>
+                    </MotionBox>
                   </HStack>
                 </Box>
               </Box>
@@ -195,10 +209,7 @@ const Works = ({ repos = [] }) => {
             </HStack>
 
             <SimpleGrid columns={[1, 1, 2]} gap={6}>
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <MotionBox>
                 <WorkGridItem
                   id="dictator_ai"
                   title="Dictator AI"
@@ -207,11 +218,8 @@ const Works = ({ repos = [] }) => {
                   Turn any PDF into an interactive audio experience with
                   real-time text syncing.
                 </WorkGridItem>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              </MotionBox>
+              <MotionBox>
                 <WorkGridItem
                   id="purepay"
                   title="PurePay"
@@ -220,7 +228,7 @@ const Works = ({ repos = [] }) => {
                   A comprehensive backend system for jewelry store layaway
                   management.
                 </WorkGridItem>
-              </motion.div>
+              </MotionBox>
             </SimpleGrid>
 
             <Heading
@@ -235,10 +243,7 @@ const Works = ({ repos = [] }) => {
             </Heading>
 
             <SimpleGrid columns={[1, 1, 2]} gap={6}>
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <MotionBox>
                 <WorkGridItem
                   id="week_one"
                   title="Week One"
@@ -247,7 +252,7 @@ const Works = ({ repos = [] }) => {
                   This is the first week of the careerwise/business essentials
                   program.
                 </WorkGridItem>
-              </motion.div>
+              </MotionBox>
             </SimpleGrid>
 
             <Heading
@@ -262,10 +267,7 @@ const Works = ({ repos = [] }) => {
             </Heading>
 
             <SimpleGrid columns={[1, 1, 2]} gap={6}>
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <MotionBox>
                 <WorkGridItem
                   id="virusSimulator"
                   title="Python Virus Building Simulation"
@@ -274,12 +276,9 @@ const Works = ({ repos = [] }) => {
                   Graphs the state of each individual in the building
                   simulation.
                 </WorkGridItem>
-              </motion.div>
+              </MotionBox>
 
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <MotionBox>
                 <WorkGridItem
                   id="plotting"
                   title="MERRA-2 NetCDF plotting"
@@ -287,12 +286,9 @@ const Works = ({ repos = [] }) => {
                 >
                   Plotting a Graph from MERRA-2 NetCDF Files using Python.
                 </WorkGridItem>
-              </motion.div>
+              </MotionBox>
 
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
+              <MotionBox>
                 <WorkGridItem
                   id="MNIST"
                   title="MNIST dataset with neural networks"
@@ -301,7 +297,7 @@ const Works = ({ repos = [] }) => {
                   MNIST provides a baseline for testing image processing
                   systems.
                 </WorkGridItem>
-              </motion.div>
+              </MotionBox>
             </SimpleGrid>
           </motion.div>
         </Section>
@@ -319,10 +315,7 @@ const Works = ({ repos = [] }) => {
                 href={`https://github.com/${GITHUB_USERNAME}?tab=repositories`}
                 scroll={false}
               >
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                >
+                <MotionBox>
                   <Button
                     colorScheme="teal"
                     leftIcon={<FaGithub />}
@@ -330,7 +323,7 @@ const Works = ({ repos = [] }) => {
                   >
                     My Projects
                   </Button>
-                </motion.div>
+                </MotionBox>
               </HStack>
             </Box>
           </motion.div>
