@@ -1,0 +1,163 @@
+{
+    "profile": {
+        "name": "Jeffrey Fernandez",
+        "title": "Software Engineer",
+        "status": "Active",
+        "email": "ninjeff06@gmail.com",
+        "phone": "(929)-425-5178",
+        "location": "New York, NY",
+        "summary": "Welcome! I’m Jeffrey Fernandez, a passionate software engineering student currently employed at JPMorgan Chase.",
+        "avatar": "/images/profile_picture.png",
+        "socials": {
+            "github": "https://github.com/wiggapony0925",
+            "linkedin": "https://linkedin.com/in/jeffrey-fernandez-66857b269",
+            "twitter": "https://twitter.com/JeffreyF0925"
+        }
+    },
+    "works": [
+        {
+            "category": "Careerwise/Business Essentials",
+            "items": [
+                {
+                    "id": "week_one",
+                    "title": "Week One",
+                    "thumbnail": "/images/thumb.png",
+                    "description": "This is the first week of the careerwise/business essentials program."
+                }
+            ]
+        },
+        {
+            "category": "Works",
+            "items": [
+                {
+                    "id": "virusSimulator",
+                    "title": "Python Virus Building Simulation",
+                    "thumbnail": "/images/thumb.png",
+                    "description": "Graphs the state of each individual in the building simulation."
+                },
+                {
+                    "id": "plotting",
+                    "title": "MERRA-2 NetCDF plotting",
+                    "thumbnail": "/images/thumb.png",
+                    "description": "Plotting a Graph from MERRA-2 NetCDF Files using Python."
+                },
+                {
+                    "id": "MNIST",
+                    "title": "MNIST dataset with neural networks",
+                    "thumbnail": "/images/thumb.png",
+                    "description": "MNIST provides a baseline for testing image processing systems."
+                }
+            ]
+        }
+    ],
+    "workExperience": [
+        {
+            "company": "JFM Capital Group LLC (PurePay)",
+            "role": "Founder & Lead Software Engineer",
+            "period": "06/2025 – Present",
+            "location": "New York",
+            "description": [
+                "Founded and operate a software product incubator, leading the technical strategy and full-stack development for PurePay, a fintech platform enabling flexible payment and layaway solutions.",
+                "Architected a scalable web ecosystem using Next.js 14, TypeScript, and Sanity CMS, deploying production-ready environments on AWS App Runner with automated CI/ CD pipelines.",
+                "Engineered the PurePay MVP payment infrastructure, integrating Stripe Connect to handle secure checkout flows, merchant onboarding, and recurring subscription models.",
+                "Developed a secure, role-based admin portal to manage portfolio content and monitor system health, implementing Server-Side Rendering (SSR) to optimize performance and SEO.",
+                "Established enterprise-grade engineering practices, including strict type safety, modular component architecture, and automated testing to ensure maintainability and rapid feature deployment.",
+                "Orchestrated cloud infrastructure using AWS ECR for container management and Lambda for serverless backend processes, reducing operational overhead while ensuring high availability."
+            ]
+        },
+        {
+            "company": "JPMorgan Chase (JPMC)",
+            "role": "Software Engineer apprentice",
+            "period": "05/2020 – present",
+            "location": "New York, NY",
+            "url": "https://www.jpmorgan.com/global",
+            "description": [
+                "Delivered secure, accessible, and scalable web experiences in React/Octagon and TypeScript using the Manhattan Design System (MDS); shipped features used by millions of Sapphire Reserve customers across mobile, tablet, and desktop.",
+                "Built reusable UI components and standardized global styles (typography, responsive mixins), improving consistency and accelerating feature delivery within the MDS framework.",
+                "Increased release quality with automated testing: added unit tests (Jest) and TrueCD UDF acceptance tests; authored Cypress end‑to‑end suites to reduce pre‑release defects and improve build reliability.",
+                "Hardened integrations and error handling via Wiremock failure scenarios and contract testing; improved recovery UX and reduced integration regressions across the stack.",
+                "Instrumented analytics for key interactions and optimized performance (image payloads, loader logic, preloading) to cut time‑to‑render on high‑traffic views.",
+                "Supported CI/ CD readiness with JetStream and Bitbucket: monitored pipeline health, managed feature flags, ensured production‑ready merges, and validated cross‑device flows in QAC2.",
+                "Led user‑centric accessibility uplift using NVDA and a11yToolBox; performed ADA desk checks and resolved UI issues to ensure inclusive, compliant experiences.",
+                "Built an LLM‑powered recommendations chatbot in Python/ Flask with a multi‑agent architecture; integrated Apple and OpenAI APIs, validated endpoints with Bruno, and traced behavior via AWS console logs.",
+                "Collaborated cross‑functionally (Product/ Design/ Figma) in agile sprints; documented API contracts in Confluence and iterated quickly to align solutions with business goals."
+            ]
+        },
+        {
+            "company": "Finance Experience",
+            "role": "Independent",
+            "period": "Previous",
+            "location": "New York City",
+            "description": [
+                "Gained hands-on experience in sales and reselling, working with gold, jewelry, and high-demand products.",
+                "Managed business transactions, negotiating deals, and assessing the value of assets for resale.",
+                "Developed a strong understanding of market trends, profit margins, and cost analysis through real-world reselling practices.",
+                "Built relationships with industry professionals, enhancing my knowledge in finance, wealth management, and entrepreneurship."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "school": "John Jay College",
+            "degree": "BS in Computer Science & Information Security",
+            "period": "08/2025 – Present",
+            "location": "New York, NY",
+            "website": "https://www.jjay.cuny.edu",
+            "details": [
+                "Expected Graduation: 05/ 2029",
+                "Member of MBK/ ACE (My Brothers Keeper's) showing academic excellence",
+                "Founder of a startup Club at John Jay",
+                "Program involvement: Pathway Matching Program CareerWise"
+            ]
+        },
+        {
+            "school": "BMCC Borough of Manhattan Community College",
+            "degree": "CSC 101 (College Now)",
+            "period": "Summer 2023",
+            "location": "New York, NY",
+            "website": "https://www.bmcc.cuny.edu"
+        },
+        {
+            "school": "Arizona State University",
+            "degree": "AWS Cloud Computing 1; AWS Cloud Practitioner badge",
+            "period": "",
+            "location": "",
+            "website": "https://www.asu.edu"
+        },
+        {
+            "school": "Richmond Hill High School",
+            "degree": "High School Diploma",
+            "period": "09/2021 – 06/2025",
+            "location": "Richmond Hill, NY",
+            "website": "https://www.richmondhillhs.org",
+            "details": [
+                "Graduated with a citizenship, and regents endorsement Diploma",
+                "CareerWise program student",
+                "Contributed to school software development pathway"
+            ]
+        }
+    ],
+    "interests": [
+        "Art",
+        "Reading",
+        "Soccer",
+        "Programming",
+        "Machine Learning",
+        "Boxing",
+        "Working Out"
+    ],
+    "bio": [
+        {
+            "year": "2006",
+            "description": "Born in Manta, Ecuador."
+        },
+        {
+            "year": "2021 - 2025",
+            "description": "Richmond Hill High School - advanced placement in Computer Science and awarded honors in CS"
+        },
+        {
+            "year": "2020 - Present",
+            "description": "Software Engineer Intern at JPMorgan Chase, contributing to full-stack projects in the Dining Technology team."
+        }
+    ]
+}

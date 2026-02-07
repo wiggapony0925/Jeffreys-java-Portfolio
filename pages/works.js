@@ -31,7 +31,7 @@ import thumbPurePay from '../public/images/works/purepay.png'
 
 const GITHUB_USERNAME = 'wiggapony0925'
 
-const FEATURED_TOPIC = 'jeffreys_repo'
+const FEATURED_TOPIC = 'jeffreyfernandezmero'
 
 const REPOS_PER_PAGE = 10
 
@@ -45,8 +45,15 @@ const Works = ({ repos = [] }) => {
       ),
     [repos]
   )
-  const visibleRepos = repos.slice(0, visibleCount)
-  const hasMore = visibleCount < repos.length
+  const otherRepos = useMemo(
+    () =>
+      repos.filter(
+        repo => !repo.topics || !repo.topics.includes(FEATURED_TOPIC)
+      ),
+    [repos]
+  )
+  const visibleRepos = otherRepos.slice(0, visibleCount)
+  const hasMore = visibleCount < otherRepos.length
 
   // Cache repos in localStorage so detail pages can load without server-side API calls
   useEffect(() => {
@@ -119,7 +126,7 @@ const Works = ({ repos = [] }) => {
           </Section>
         )}
 
-        {repos.length > 0 && (
+        {otherRepos.length > 0 && (
           <Section>
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -164,7 +171,7 @@ const Works = ({ repos = [] }) => {
                           setVisibleCount(prev => prev + REPOS_PER_PAGE)
                         }
                       >
-                        Load More ({repos.length - visibleCount} remaining)
+                        Load More ({otherRepos.length - visibleCount} remaining)
                       </Button>
                     </MotionBox>
                   )}
