@@ -1,3 +1,7 @@
+/**
+ * Chakra - Provider wrapper that handles color mode persistence.
+ * Supports both SSR cookie-based and client-side localStorage managers.
+ */
 import {
   ChakraProvider,
   cookieStorageManagerSSR,

@@ -1,3 +1,6 @@
+/**
+ * Footer - Simple copyright footer displayed on every page.
+ */
 import { Box } from '@chakra-ui/react'
 
 const Footer = () => {

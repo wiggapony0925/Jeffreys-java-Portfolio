@@ -1,3 +1,7 @@
+/**
+ * Logo - Site logo with animated footprint icon and site name.
+ * Rotates the icon on hover for a playful interaction.
+ */
 import Link from 'next/link'
 import { Text, useColorModeValue } from '@chakra-ui/react'
 import FootprintIcon from './icons/footprint'

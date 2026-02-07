@@ -1,3 +1,8 @@
+/**
+ * Bio styled components for the timeline section.
+ * BioSection - Indented paragraph with hanging year label.
+ * BioYear - Bold year label within a BioSection.
+ */
 import { Box } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 

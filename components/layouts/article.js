@@ -1,3 +1,10 @@
+/**
+ * Article Layout - Page transition wrapper with enter/exit animations.
+ * Used by individual pages to animate in/out during navigation.
+ *
+ * @param {ReactNode} children - Page content.
+ * @param {string}    [title]  - Page title for meta tags.
+ */
 import { motion } from 'framer-motion'
 import Head from 'next/head'
 import { GridItemStyle } from '../grid-item'
