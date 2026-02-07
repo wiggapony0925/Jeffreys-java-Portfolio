@@ -1,3 +1,9 @@
+/**
+ * Work page shared components:
+ * - Title: Breadcrumb header with "Works > [Project Name]"
+ * - WorkImage: Rounded project screenshot/image
+ * - Meta: Colored badge for metadata labels (Stack, Platform, etc.)
+ */
 import NextLink from 'next/link'
 import { Heading, Box, Image, Link, Badge } from '@chakra-ui/react'
 import { ChevronRightIcon } from '@chakra-ui/icons'

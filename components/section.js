@@ -1,3 +1,9 @@
+/**
+ * Section - Animated wrapper that fades children in with a configurable delay.
+ *
+ * @param {ReactNode} children - Content to animate.
+ * @param {number}    [delay=0] - Animation delay in seconds.
+ */
 import { motion } from 'framer-motion'
 import { chakra, shouldForwardProp } from '@chakra-ui/react'
 

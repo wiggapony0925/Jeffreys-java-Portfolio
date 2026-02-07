@@ -1,3 +1,9 @@
+/**
+ * Grid item components for displaying project cards.
+ * - GridItem: External link card with thumbnail and title.
+ * - WorkGridItem: Internal link card that navigates to /works/[id].
+ * - GridItemStyle: Global CSS for thumbnail border radius.
+ */
 import NextLink from 'next/link'
 import Image from 'next/image'
 import { Box, Text, LinkBox, LinkOverlay } from '@chakra-ui/react'

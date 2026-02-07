@@ -1,3 +1,7 @@
+/**
+ * Navbar - Main navigation bar with responsive hamburger menu.
+ * Fixed to the top of the viewport with blur backdrop.
+ */
 import { forwardRef } from 'react'
 import Logo from './logo'
 import NextLink from 'next/link'
@@ -17,8 +21,9 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
 import ThemeToggleButton from './theme-toggle-button'
-import { IoLogoGithub, IoLogoReact} from 'react-icons/io5'
+import { IoLogoGithub } from 'react-icons/io5'
 
+/** Styled nav link that highlights when the current route matches */
 const LinkItem = ({ href, path, target, children, ...props }) => {
   const active = path === href
   const inactiveColor = useColorModeValue('gray.800', 'whiteAlpha.900')
@@ -38,6 +43,7 @@ const LinkItem = ({ href, path, target, children, ...props }) => {
   )
 }
 
+/** Forwarded-ref link used inside Chakra Menu items */
 const MenuLink = forwardRef((props, ref) => (
   <Link ref={ref} as={NextLink} {...props} />
 ))
@@ -69,6 +75,7 @@ const Navbar = props => {
           </Heading>
         </Flex>
 
+        {/* Desktop Navigation */}
         <Stack
           direction={{ base: 'column', md: 'row' }}
           display={{ base: 'none', md: 'flex' }}
@@ -93,7 +100,6 @@ const Navbar = props => {
             Github
           </LinkItem>
           <LinkItem
-            target="_self"
             href="/resume"
             path={path}
             display="inline-flex"
@@ -101,7 +107,6 @@ const Navbar = props => {
             style={{ gap: 4 }}
             pl={2}
           >
-            <IoLogoReact />
             Resume
           </LinkItem>
         </Stack>
@@ -109,6 +114,7 @@ const Navbar = props => {
         <Box flex={1} align="right">
           <ThemeToggleButton />
 
+          {/* Mobile Hamburger Menu */}
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
             <Menu isLazy id="navbar-menu">
               <MenuButton
@@ -124,17 +130,15 @@ const Navbar = props => {
                 <MenuItem as={MenuLink} href="/works">
                   Works
                 </MenuItem>
-              <MenuItem
+                <MenuItem
                   as={Link}
-                  href="https://github.com/craftzdog/craftzdog-homepagex"
+                  href="https://github.com/wiggapony0925"
+                  target="_blank"
                 >
                   View Source
                 </MenuItem>
-                <MenuItem
-                  as={Link}
-                  href="/resume"
-                >
-                  resume
+                <MenuItem as={MenuLink} href="/resume">
+                  Resume
                 </MenuItem>
               </MenuList>
             </Menu>
