@@ -81,7 +81,7 @@ const RepoDetail = ({ repo, readme }) => {
           )}
         </List>
 
-        <HStack spacing={4} my={4} justify="center" flexWrap="wrap">
+        <HStack spacing={{ base: 2, md: 4 }} my={4} justify="center" flexWrap="wrap">
           {repo.stargazers_count > 0 && (
             <Badge fontSize="0.8em" variant="subtle" display="flex" alignItems="center" gap={1} px={2} py={1}>
               <FaStar size={12} /> {repo.stargazers_count} stars
@@ -122,6 +122,8 @@ const ReadmeContent = ({ content }) => {
       className="readme-content"
       fontSize="sm"
       lineHeight="tall"
+      overflowX="hidden"
+      wordBreak="break-word"
       sx={{
         'h1, h2, h3, h4, h5, h6': {
           fontWeight: 'bold',
@@ -146,10 +148,11 @@ const ReadmeContent = ({ content }) => {
         },
         pre: {
           bg: codeBg,
-          p: 3,
+          p: { base: 2, md: 3 },
           borderRadius: 'md',
           overflowX: 'auto',
           mb: 3,
+          maxW: '100%',
           code: {
             bg: 'transparent',
             p: 0

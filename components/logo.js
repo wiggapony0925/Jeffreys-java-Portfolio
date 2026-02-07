@@ -10,6 +10,7 @@ const LogoBox = styled.span`
   height: 30px;
   line-height: 20px;
   padding: 10px;
+  max-width: 100%;
 
   > svg {
     transition: 200ms ease;
@@ -31,6 +32,10 @@ const Logo = () => {
           fontFamily='M PLUS Rounded 1c", sans-serif'
           fontWeight="bold"
           ml={3}
+          fontSize={{ base: '14px', sm: '16px', md: '18px' }}
+          whiteSpace="nowrap"
+          overflow="hidden"
+          textOverflow="ellipsis"
         >
           Jeffrey Fernandez
         </Text>

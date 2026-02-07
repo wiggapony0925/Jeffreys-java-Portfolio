@@ -36,7 +36,7 @@ const Works = ({ repos = [] }) => {
     <Layout title="Works">
       <Container>
         <Center>
-          <Flex mt="15" align="center">
+          <Flex mt={6} align="center" flexWrap="wrap" justify="center">
             <Avatar
               src="/images/profile_picture.png"
               ml="3"
@@ -65,7 +65,7 @@ const Works = ({ repos = [] }) => {
               <Box
                 bg={sectionBg}
                 borderRadius="xl"
-                p={6}
+                p={{ base: 3, md: 6 }}
                 mt={8}
               >
                 <HStack justify="center" mb={4} spacing={2}>

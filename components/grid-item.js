@@ -34,13 +34,14 @@ export const WorkGridItem = ({ children, id, title, thumbnail }) => (
         alt={title}
         className="grid-item-thumbnail"
         placeholder="blur"
+        sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, 50vw"
       />
       <LinkOverlay as="div" href={`/works/${id}`}>
-        <Text mt={2} fontSize={20}>
+        <Text mt={2} fontSize={{ base: 18, md: 20 }}>
           {title}
         </Text>
       </LinkOverlay>
-      <Text fontSize={14}>{children}</Text>
+      <Text fontSize={{ base: 13, md: 14 }}>{children}</Text>
     </LinkBox>
   </Box>
 )
@@ -50,6 +51,8 @@ export const GridItemStyle = () => (
     styles={`
       .grid-item-thumbnail {
         border-radius: 12px;
+        max-width: 100%;
+        height: auto;
       }
     `}
   />

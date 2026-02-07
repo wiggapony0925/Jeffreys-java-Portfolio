@@ -86,7 +86,7 @@ const Home = () => {
 
         {/* Contact Section */}
         <Box alignContent="center">
-          <Stack direction="row" spacing={4} mt="4" mb={6}>
+          <Stack direction="row" spacing={4} mt="4" mb={6} flexWrap="wrap">
             <Tooltip label="Email Me">
               <IconButton
                 aria-label="Email"

@@ -42,7 +42,7 @@ export const GitHubRepoItem = ({ repo }) => {
     <Box w="100%" textAlign="center">
       <LinkBox cursor="pointer">
         <Box
-          p={5}
+          p={{ base: 3, md: 5 }}
           borderRadius="xl"
           borderWidth="1px"
           borderColor={borderColor}
@@ -66,10 +66,11 @@ export const GitHubRepoItem = ({ repo }) => {
             >
               <Text
                 mt={1}
-                fontSize={17}
+                fontSize={{ base: 15, md: 17 }}
                 fontWeight="bold"
                 noOfLines={1}
                 letterSpacing="tight"
+                wordBreak="break-word"
               >
                 {repo.name}
               </Text>
