@@ -32,11 +32,13 @@ const RepoDetail = ({ repo, readme }) => {
     )
   }
 
-  const updatedDate = new Date(repo.updated_at).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+  const updatedDate = repo.updated_at
+    ? new Date(repo.updated_at).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    : null
 
   return (
     <Layout title={repo.name}>
@@ -90,9 +92,11 @@ const RepoDetail = ({ repo, readme }) => {
               <FaCodeBranch size={12} /> {repo.forks_count} forks
             </Badge>
           )}
-          <Badge fontSize="0.8em" variant="subtle" display="flex" alignItems="center" gap={1} px={2} py={1}>
-            <FaCalendarAlt size={12} /> Updated {updatedDate}
-          </Badge>
+          {updatedDate && (
+            <Badge fontSize="0.8em" variant="subtle" display="flex" alignItems="center" gap={1} px={2} py={1}>
+              <FaCalendarAlt size={12} /> Updated {updatedDate}
+            </Badge>
+          )}
         </HStack>
 
         {readme && (
@@ -195,7 +199,7 @@ export async function getServerSideProps({ params, req }) {
   const { name } = params
 
   // Validate repo name to prevent injection
-  if (!/^[a-zA-Z0-9._-]+$/.test(name)) {
+  if (!name || !/^[a-zA-Z0-9._-]+$/.test(name)) {
     return { notFound: true }
   }
 
@@ -211,21 +215,21 @@ export async function getServerSideProps({ params, req }) {
 
   try {
     const repoRes = await fetch(
-      `https://api.github.com/repos/${GITHUB_USERNAME}/${name}`,
+      `https://api.github.com/repos/${GITHUB_USERNAME}/${encodeURIComponent(name)}`,
       { headers }
     )
     if (repoRes.ok) {
       const data = await repoRes.json()
       repo = {
         id: data.id,
-        name: data.name,
+        name: data.name || name,
         description: data.description || 'No description provided.',
-        html_url: data.html_url,
+        html_url: data.html_url || '',
         homepage: data.homepage || null,
-        language: data.language,
-        stargazers_count: data.stargazers_count,
-        forks_count: data.forks_count,
-        updated_at: data.updated_at,
+        language: data.language || null,
+        stargazers_count: data.stargazers_count || 0,
+        forks_count: data.forks_count || 0,
+        updated_at: data.updated_at || null,
         topics: data.topics || []
       }
     }
@@ -233,9 +237,13 @@ export async function getServerSideProps({ params, req }) {
     console.error('Failed to fetch repo:', error)
   }
 
+  if (!repo) {
+    return { notFound: true }
+  }
+
   try {
     const readmeRes = await fetch(
-      `https://api.github.com/repos/${GITHUB_USERNAME}/${name}/readme`,
+      `https://api.github.com/repos/${GITHUB_USERNAME}/${encodeURIComponent(name)}/readme`,
       {
         headers: {
           ...headers,
@@ -251,15 +259,11 @@ export async function getServerSideProps({ params, req }) {
     console.error('Failed to fetch README:', error)
   }
 
-  if (!repo) {
-    return { notFound: true }
-  }
-
   return {
     props: {
       cookies: req.headers.cookie ?? '',
       repo,
-      readme
+      readme: readme || null
     }
   }
 }
