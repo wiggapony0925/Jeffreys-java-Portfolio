@@ -1,7 +1,15 @@
 {
   "name": "jeffrey-fernandez-portfolio",
   "version": "1.0.0",
-  "description": "Jeffrey Fernandez's personal portfolio website showcasing software engineering projects and skills.",
+  "description": "Jeffrey Fernandez — Software Engineer at JPMorgan Chase. Personal portfolio showcasing full-stack projects, AWS cloud work, and scalable web applications built with Next.js, React, Chakra UI, Three.js, and Framer Motion.",
+  "homepage": "https://jeffreys-java-portfolio.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wiggapony0925/Jeffreys-java-Portfolio"
+  },
+  "bugs": {
+    "url": "https://github.com/wiggapony0925/Jeffreys-java-Portfolio/issues"
+  },
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
     "build": "next build",
@@ -10,14 +18,26 @@
     "lint": "next lint"
   },
   "keywords": [
-    "portfolio",
+    "jeffrey fernandez",
     "software engineer",
+    "portfolio",
+    "jpmorgan chase",
     "next.js",
     "react",
     "chakra-ui",
-    "jeffrey fernandez"
+    "three.js",
+    "framer-motion",
+    "aws",
+    "full-stack",
+    "web development",
+    "purepay",
+    "john jay college"
   ],
-  "author": "Jeffrey Fernandez",
+  "author": {
+    "name": "Jeffrey Fernandez",
+    "email": "ninjeff06@gmail.com",
+    "url": "https://github.com/wiggapony0925"
+  },
   "license": "UNLICENSED",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.15",
