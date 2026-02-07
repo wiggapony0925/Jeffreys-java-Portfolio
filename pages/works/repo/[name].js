@@ -16,7 +16,8 @@ import {
 } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { FaStar, FaCodeBranch, FaCalendarAlt } from 'react-icons/fa'
-import DOMPurify from 'isomorphic-dompurify'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { Title, Meta } from '../../../components/work'
 import P from '../../../components/paragraph'
 import Layout from '../../../components/layouts/article'
@@ -35,7 +36,7 @@ const RepoDetail = () => {
     if (!name) return
 
     // Validate repo name
-    if (!/^[a-zA-Z0-9_-]+$/.test(name)) {
+    if (!/^[a-zA-Z0-9._-]+$/.test(name)) {
       setNotFound(true)
       setLoading(false)
       return
@@ -97,11 +98,11 @@ const RepoDetail = () => {
         setLoading(false)
       })
 
-    // Fetch README separately
+    // Fetch README as raw markdown
     fetch(
       `https://api.github.com/repos/${GITHUB_USERNAME}/${encodeURIComponent(name)}/readme`,
       {
-        headers: { Accept: 'application/vnd.github.v3.html' },
+        headers: { Accept: 'application/vnd.github.v3.raw' },
         signal
       }
     )
@@ -109,9 +110,9 @@ const RepoDetail = () => {
         if (!res.ok) return null
         return res.text()
       })
-      .then(html => {
-        if (html) {
-          setReadme(DOMPurify.sanitize(html))
+      .then(markdown => {
+        if (markdown) {
+          setReadme(markdown)
         }
       })
       .catch(err => {
@@ -304,8 +305,9 @@ const ReadmeContent = ({ content }) => {
           borderColor: borderColor
         }
       }}
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
+    >
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+    </Box>
   )
 }
 
