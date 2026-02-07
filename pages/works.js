@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Center, Container, Heading, SimpleGrid, Badge, Avatar, Flex, Box, Button, Text, HStack, Spinner } from '@chakra-ui/react';
+import { Center, Container, Heading, SimpleGrid, Badge, Avatar, Flex, Box, Button, Text, HStack } from '@chakra-ui/react';
 import { FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import NextLink from 'next/link';
@@ -14,22 +13,9 @@ import thumbWeekOne from '../public/images/works/week_one.png';
 import thumbDictator from '../public/images/works/dictator_ai.png';
 import thumbPurePay from '../public/images/works/purepay.png';
 
-const Works = () => {
-  const [repos, setRepos] = useState([]);
-  const [loading, setLoading] = useState(true);
+const GITHUB_USERNAME = 'wiggapony0925'
 
-  useEffect(() => {
-    fetch('/api/github')
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          setRepos(data);
-        }
-        setLoading(false);
-      })
-      .catch(err => { console.error('Failed to fetch repos:', err); setLoading(false); });
-  }, []);
-
+const Works = ({ repos = [] }) => {
   return (
     <Layout title="Works">
       <Container>
@@ -145,11 +131,7 @@ const Works = () => {
               GitHub Repositories
             </Heading>
 
-            {loading ? (
-              <Center py={10}>
-                <Spinner size="lg" color="teal.300" />
-              </Center>
-            ) : repos.length > 0 ? (
+            {repos.length > 0 ? (
               <SimpleGrid columns={[1, 1, 2]} gap={6}>
                 {repos.map(repo => (
                   <motion.div
@@ -193,4 +175,46 @@ const Works = () => {
 };
 
 export default Works;
-export { getServerSideProps } from '../components/chakra';
+
+export async function getServerSideProps({ req }) {
+  let repos = []
+  try {
+    const response = await fetch(
+      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
+      {
+        headers: {
+          Accept: 'application/vnd.github.v3+json',
+          ...(process.env.GITHUB_TOKEN && {
+            Authorization: `token ${process.env.GITHUB_TOKEN}`
+          })
+        }
+      }
+    )
+    if (response.ok) {
+      const data = await response.json()
+      repos = data
+        .filter(repo => !repo.fork && !repo.archived && !repo.private)
+        .map(repo => ({
+          id: repo.id,
+          name: repo.name,
+          description: repo.description || 'No description provided.',
+          html_url: repo.html_url,
+          homepage: repo.homepage || null,
+          language: repo.language,
+          stargazers_count: repo.stargazers_count,
+          forks_count: repo.forks_count,
+          updated_at: repo.updated_at,
+          topics: repo.topics || []
+        }))
+    }
+  } catch (error) {
+    console.error('Failed to fetch GitHub repos:', error)
+  }
+
+  return {
+    props: {
+      cookies: req.headers.cookie ?? '',
+      repos
+    }
+  }
+}

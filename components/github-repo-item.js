@@ -22,13 +22,7 @@ export const GitHubRepoItem = ({ repo }) => {
 
   return (
     <Box w="100%" textAlign="center">
-      <LinkBox
-        as="a"
-        href={repo.html_url}
-        target="_blank"
-        rel="noopener noreferrer"
-        cursor="pointer"
-      >
+      <LinkBox cursor="pointer">
         <Box
           p={4}
           borderRadius="12px"
@@ -43,7 +37,7 @@ export const GitHubRepoItem = ({ repo }) => {
           justifyContent="space-between"
         >
           <Box>
-            <LinkOverlay href={repo.html_url} target="_blank">
+            <LinkOverlay href={repo.html_url} target="_blank" rel="noopener noreferrer">
               <Text mt={2} fontSize={18} fontWeight="bold" noOfLines={1}>
                 {repo.name}
               </Text>
