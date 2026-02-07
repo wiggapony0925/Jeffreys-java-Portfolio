@@ -14,42 +14,23 @@ import {
 } from '@chakra-ui/react'
 import { FaStar, FaChevronLeft, FaChevronRight, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
-import { GitHubRepoItem } from './github-repo-item'
-import MotionBox from './motion-box'
-import Section from './section'
-import { useRef, useState, useEffect } from 'react'
+import MotionBox from './ui/motion-box'
+import Section from './ui/section'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import NextLink from 'next/link'
-
-const FEATURED_TOPIC = 'jeffreyfernandezmero'
-
-const languageColors = {
-    JavaScript: '#f1e05a',
-    TypeScript: '#3178c6',
-    Python: '#3572A5',
-    Java: '#b07219',
-    'C++': '#f34b7d',
-    C: '#555555',
-    HTML: '#e34c26',
-    CSS: '#563d7c',
-    Shell: '#89e051',
-    Go: '#00ADD8',
-    Rust: '#dea584',
-    Ruby: '#701516'
-}
+import { FEATURED_TOPIC, LANGUAGE_COLORS } from '../lib/constants'
 
 const FeaturedCard = ({ repo }) => {
-    // Using standard theme values consistent with GitHubRepoItem and other cards
-    const bg = useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')
-    const hoverBg = useColorModeValue('whiteAlpha.900', 'whiteAlpha.300')
-    const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300')
+    const textColor = useColorModeValue('gray.600', 'gray.300')
+    const dividerColor = useColorModeValue('gray.100', 'whiteAlpha.100')
 
     return (
         <LinkBox h="100%" transition="all 0.3s">
             <Box
                 p={5}
-                bg={bg}
+                bg="bg.card"
                 borderWidth="1px"
-                borderColor={borderColor}
+                borderColor="border.card"
                 borderRadius="xl"
                 h="100%"
                 display="flex"
@@ -58,7 +39,7 @@ const FeaturedCard = ({ repo }) => {
                 transition="all 0.3s"
                 _hover={{
                     borderColor: 'teal.300',
-                    bg: hoverBg,
+                    bg: 'bg.card.hover',
                     boxShadow: '0 4px 12px rgba(136, 204, 202, 0.15)'
                 }}
                 position="relative"
@@ -110,7 +91,7 @@ const FeaturedCard = ({ repo }) => {
                                         w="8px"
                                         h="8px"
                                         borderRadius="full"
-                                        bg={languageColors[repo.language] || '#ccc'}
+                                        bg={LANGUAGE_COLORS[repo.language] || '#ccc'}
                                         display="inline-block"
                                     />
                                 )}
@@ -119,12 +100,12 @@ const FeaturedCard = ({ repo }) => {
                         </Box>
                     </HStack>
 
-                    <Text fontSize="sm" color={useColorModeValue('gray.600', 'gray.300')} mb={4} noOfLines={3}>
+                    <Text fontSize="sm" color={textColor} mb={4} noOfLines={3}>
                         {repo.description}
                     </Text>
                 </Box>
 
-                <HStack spacing={4} mt="auto" pt={4} borderTopWidth="1px" borderColor={useColorModeValue('gray.100', 'whiteAlpha.100')}>
+                <HStack spacing={4} mt="auto" pt={4} borderTopWidth="1px" borderColor={dividerColor}>
                     <HStack fontSize="sm" spacing={1}>
                         <Icon as={FaStar} color="yellow.400" />
                         <Text>{repo.stargazers_count}</Text>
@@ -146,7 +127,7 @@ const FeaturedCard = ({ repo }) => {
 }
 
 const FeaturedProjects = ({ repos = [], viewMode = 'grid', delay = 0 }) => {
-    const sectionBg = useColorModeValue('whiteAlpha.600', 'whiteAlpha.100')
+    const pageBg = useColorModeValue('#f0e7db', '#202023')
     const scrollRef = useRef(null)
     const [showLeftArrow, setShowLeftArrow] = useState(false)
     const [showRightArrow, setShowRightArrow] = useState(true)
@@ -155,27 +136,25 @@ const FeaturedProjects = ({ repos = [], viewMode = 'grid', delay = 0 }) => {
         repo => repo.topics && repo.topics.includes(FEATURED_TOPIC)
     )
 
-    const checkScroll = () => {
+    const checkScroll = useCallback(() => {
         if (!scrollRef.current) return
         const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current
         setShowLeftArrow(scrollLeft > 0)
         setShowRightArrow(Math.ceil(scrollLeft + clientWidth) < scrollWidth)
-    }
+    }, [])
 
     useEffect(() => {
         const el = scrollRef.current
         if (el) {
             el.addEventListener('scroll', checkScroll)
-            // Initial check
             checkScroll()
-            // Check on resize
             window.addEventListener('resize', checkScroll)
         }
         return () => {
             if (el) el.removeEventListener('scroll', checkScroll)
             window.removeEventListener('resize', checkScroll)
         }
-    }, [featuredRepos])
+    }, [featuredRepos, checkScroll])
 
     if (featuredRepos.length === 0) {
         return null
@@ -183,13 +162,11 @@ const FeaturedProjects = ({ repos = [], viewMode = 'grid', delay = 0 }) => {
 
     const scroll = (direction) => {
         if (scrollRef.current) {
-            const { current } = scrollRef
             const scrollAmount = 320
-            if (direction === 'left') {
-                current.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
-            } else {
-                current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
-            }
+            scrollRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            })
         }
     }
 
@@ -201,7 +178,7 @@ const FeaturedProjects = ({ repos = [], viewMode = 'grid', delay = 0 }) => {
                 transition={{ duration: 0.5 }}
             >
                 <Box
-                    bg={sectionBg}
+                    bg="bg.section"
                     borderRadius="xl"
                     p={{ base: 3, md: 6 }}
                     mt={8}
@@ -264,7 +241,6 @@ const FeaturedProjects = ({ repos = [], viewMode = 'grid', delay = 0 }) => {
                                 ))}
                             </Flex>
 
-                            {/* Navigation Buttons */}
                             {showLeftArrow && (
                                 <IconButton
                                     aria-label="Scroll Left"
@@ -301,14 +277,13 @@ const FeaturedProjects = ({ repos = [], viewMode = 'grid', delay = 0 }) => {
                                 />
                             )}
 
-                            {/* Overlay Gradients for smooth fade effect */}
                             <Box
                                 position="absolute"
                                 left={0}
                                 top={0}
                                 bottom={0}
                                 w="20px"
-                                bgGradient={`linear(to-r, ${useColorModeValue('#f0e7db', '#202023')}, transparent)`}
+                                bgGradient={`linear(to-r, ${pageBg}, transparent)`}
                                 pointerEvents="none"
                                 display={{ base: 'none', md: 'block' }}
                             />
@@ -318,7 +293,7 @@ const FeaturedProjects = ({ repos = [], viewMode = 'grid', delay = 0 }) => {
                                 top={0}
                                 bottom={0}
                                 w="20px"
-                                bgGradient={`linear(to-l, ${useColorModeValue('#f0e7db', '#202023')}, transparent)`}
+                                bgGradient={`linear(to-l, ${pageBg}, transparent)`}
                                 pointerEvents="none"
                                 display={{ base: 'none', md: 'block' }}
                             />

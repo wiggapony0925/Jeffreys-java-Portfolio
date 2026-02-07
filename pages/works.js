@@ -11,17 +11,16 @@ import {
   Button,
   Text,
   HStack,
-  Icon,
-  useColorModeValue
+  Icon
 } from '@chakra-ui/react'
-import { FaGithub, FaCode, FaStar } from 'react-icons/fa'
+import { FaGithub, FaCode } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import NextLink from 'next/link'
 import Layout from '../components/layouts/article'
-import Section from '../components/section'
-import { WorkGridItem } from '../components/grid-item'
+import Section from '../components/ui/section'
+import { WorkGridItem } from '../components/ui/grid-item'
 import { GitHubRepoItem } from '../components/github-repo-item'
-import MotionBox from '../components/motion-box'
+import MotionBox from '../components/ui/motion-box'
 import thumbPlotting from '../public/images/works/plotting.png'
 import thumbVirus from '../public/images/works/virus_simulation.png'
 import thumbMnist from '../public/images/works/mnist.png'
@@ -29,15 +28,12 @@ import thumbWeekOne from '../public/images/works/week_one.png'
 import thumbDictator from '../public/images/works/dictator_ai.png'
 import thumbPurePay from '../public/images/works/purepay.png'
 import FeaturedProjects from '../components/featured-projects'
-
-const GITHUB_USERNAME = 'wiggapony0925'
-
-const FEATURED_TOPIC = 'jeffreyfernandezmero'
+import { GITHUB_USERNAME, FEATURED_TOPIC } from '../lib/constants'
+import { getReposServerSideProps } from '../lib/github'
 
 const REPOS_PER_PAGE = 10
 
 const Works = ({ repos = [] }) => {
-  const sectionBg = useColorModeValue('whiteAlpha.600', 'whiteAlpha.100')
   const [visibleCount, setVisibleCount] = useState(REPOS_PER_PAGE)
   const otherRepos = useMemo(
     () =>
@@ -93,7 +89,7 @@ const Works = ({ repos = [] }) => {
               transition={{ duration: 0.5 }}
             >
               <Box
-                bg={sectionBg}
+                bg="bg.section"
                 borderRadius="xl"
                 p={{ base: 3, md: 6 }}
                 mt={8}
@@ -301,45 +297,4 @@ const Works = ({ repos = [] }) => {
 
 export default Works
 
-export async function getServerSideProps({ req }) {
-  let repos = []
-  try {
-    const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
-      {
-        headers: {
-          Accept: 'application/vnd.github.v3+json',
-          ...(process.env.GITHUB_TOKEN && {
-            Authorization: `token ${process.env.GITHUB_TOKEN}`
-          })
-        }
-      }
-    )
-    if (response.ok) {
-      const data = await response.json()
-      repos = data
-        .filter(repo => !repo.fork && !repo.archived && !repo.private)
-        .map(repo => ({
-          id: repo.id,
-          name: repo.name,
-          description: repo.description || 'No description provided.',
-          html_url: repo.html_url,
-          homepage: repo.homepage || null,
-          language: repo.language,
-          stargazers_count: repo.stargazers_count,
-          forks_count: repo.forks_count,
-          updated_at: repo.updated_at,
-          topics: repo.topics || []
-        }))
-    }
-  } catch (error) {
-    console.error('Failed to fetch GitHub repos:', error)
-  }
-
-  return {
-    props: {
-      cookies: req.headers.cookie ?? '',
-      repos
-    }
-  }
-}
+export { getReposServerSideProps as getServerSideProps }
