@@ -2,7 +2,8 @@ import Layout from '../components/layouts/main'
 import Fonts from '../components/fonts'
 import { AnimatePresence } from 'framer-motion'
 import Chakra from '../components/chakra'
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/react'
+import Script from 'next/script'
 
 if (typeof window !== 'undefined') {
   window.history.scrollRestoration = 'manual'
@@ -14,7 +15,7 @@ function Website({ Component, pageProps, router }) {
       <Fonts />
       <Layout router={router}>
         <AnimatePresence
-          mode='wait'
+          mode="wait"
           initial={true}
           onExitComplete={() => {
             if (typeof window !== 'undefined') {
@@ -26,9 +27,24 @@ function Website({ Component, pageProps, router }) {
         </AnimatePresence>
       </Layout>
       <Analytics />
+      {/* Calendly badge widget */}
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+        onLoad={() => {
+          if (window.Calendly) {
+            window.Calendly.initBadgeWidget({
+              url: 'https://calendly.com/ninjeff06',
+              text: 'Schedule time with me',
+              color: '#319795',
+              textColor: '#ffffff',
+              branding: false
+            })
+          }
+        }}
+      />
     </Chakra>
   )
 }
-
 
 export default Website
