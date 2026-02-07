@@ -16,19 +16,18 @@ import {
   Divider
 } from '@chakra-ui/react';
 import { ArrowForwardIcon, ChevronRightIcon, EmailIcon } from '@chakra-ui/icons';
-import Paragraph from '../components/paragraph';
-import { BioSection, BioYear } from '../components/bio';
+import Paragraph from '../components/ui/paragraph';
+import { BioSection, BioYear } from '../components/ui/bio';
 import Layout from '../components/layouts/article';
-import Section from '../components/section';
+import Section from '../components/ui/section';
 import { IoLogoTwitter, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5';
 import Image from 'next/image';
 import FeaturedProjects from '../components/featured-projects';
+import { getReposServerSideProps } from '../lib/github';
 
 const ProfileImage = chakra(Image, {
   shouldForwardProp: prop => ['width', 'height', 'src', 'alt'].includes(prop)
 });
-
-const GITHUB_USERNAME = 'wiggapony0925'
 
 const Home = ({ repos = [] }) => {
   return (
@@ -278,45 +277,4 @@ const Home = ({ repos = [] }) => {
 
 export default Home;
 
-export async function getServerSideProps({ req }) {
-  let repos = []
-  try {
-    const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
-      {
-        headers: {
-          Accept: 'application/vnd.github.v3+json',
-          ...(process.env.GITHUB_TOKEN && {
-            Authorization: `token ${process.env.GITHUB_TOKEN}`
-          })
-        }
-      }
-    )
-    if (response.ok) {
-      const data = await response.json()
-      repos = data
-        .filter(repo => !repo.fork && !repo.archived && !repo.private)
-        .map(repo => ({
-          id: repo.id,
-          name: repo.name,
-          description: repo.description || 'No description provided.',
-          html_url: repo.html_url,
-          homepage: repo.homepage || null,
-          language: repo.language,
-          stargazers_count: repo.stargazers_count,
-          forks_count: repo.forks_count,
-          updated_at: repo.updated_at,
-          topics: repo.topics || []
-        }))
-    }
-  } catch (error) {
-    console.error('Failed to fetch GitHub repos:', error)
-  }
-
-  return {
-    props: {
-      cookies: req.headers.cookie ?? '',
-      repos
-    }
-  }
-}
+export { getReposServerSideProps as getServerSideProps }

@@ -6,31 +6,12 @@ import {
   LinkOverlay,
   Badge,
   HStack,
-  useColorModeValue,
   Icon
 } from '@chakra-ui/react'
 import { FaStar, FaCodeBranch, FaCalendarAlt } from 'react-icons/fa'
-
-const languageColors = {
-  JavaScript: '#f1e05a',
-  TypeScript: '#3178c6',
-  Python: '#3572A5',
-  Java: '#b07219',
-  'C++': '#f34b7d',
-  C: '#555555',
-  HTML: '#e34c26',
-  CSS: '#563d7c',
-  Shell: '#89e051',
-  Go: '#00ADD8',
-  Rust: '#dea584',
-  Ruby: '#701516'
-}
+import { LANGUAGE_COLORS } from '../lib/constants'
 
 export const GitHubRepoItem = ({ repo }) => {
-  const bgColor = useColorModeValue('whiteAlpha.700', 'whiteAlpha.200')
-  const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300')
-  const hoverBg = useColorModeValue('whiteAlpha.900', 'whiteAlpha.300')
-
   const updatedDate = repo.updated_at
     ? new Date(repo.updated_at).toLocaleDateString('en-US', {
         month: 'short',
@@ -45,11 +26,11 @@ export const GitHubRepoItem = ({ repo }) => {
           p={{ base: 3, md: 5 }}
           borderRadius="xl"
           borderWidth="1px"
-          borderColor={borderColor}
-          bg={bgColor}
+          borderColor="border.card"
+          bg="bg.card"
           _hover={{
             borderColor: 'teal.300',
-            bg: hoverBg,
+            bg: 'bg.card.hover',
             boxShadow: '0 4px 12px rgba(136, 204, 202, 0.15)'
           }}
           transition="all 0.2s ease"
@@ -99,7 +80,7 @@ export const GitHubRepoItem = ({ repo }) => {
                     w="8px"
                     h="8px"
                     borderRadius="full"
-                    bg={languageColors[repo.language] || '#ccc'}
+                    bg={LANGUAGE_COLORS[repo.language] || '#ccc'}
                     display="inline-block"
                   />
                   {repo.language}
