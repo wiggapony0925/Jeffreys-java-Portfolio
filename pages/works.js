@@ -14,7 +14,7 @@ import {
   Icon,
   useColorModeValue
 } from '@chakra-ui/react'
-import { FaGithub, FaCode } from 'react-icons/fa'
+import { FaGithub, FaCode, FaStar } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import NextLink from 'next/link'
 import Layout from '../components/layouts/article'
@@ -30,8 +30,13 @@ import thumbPurePay from '../public/images/works/purepay.png'
 
 const GITHUB_USERNAME = 'wiggapony0925'
 
+const FEATURED_TOPIC = 'jeffreys_repo'
+
 const Works = ({ repos = [] }) => {
   const sectionBg = useColorModeValue('whiteAlpha.600', 'whiteAlpha.100')
+  const featuredRepos = repos.filter(
+    repo => repo.topics && repo.topics.includes(FEATURED_TOPIC)
+  )
 
   // Cache repos in localStorage so detail pages can load without server-side API calls
   useEffect(() => {
@@ -66,6 +71,47 @@ const Works = ({ repos = [] }) => {
             </Box>
           </Flex>
         </Center>
+
+        {featuredRepos.length > 0 && (
+          <Section>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Box
+                bg={sectionBg}
+                borderRadius="xl"
+                p={{ base: 3, md: 6 }}
+                mt={8}
+              >
+                <HStack justify="center" mb={4} spacing={2}>
+                  <Icon as={FaStar} boxSize={5} color="yellow.400" />
+                  <Heading
+                    as="h3"
+                    fontSize={20}
+                    textAlign="center"
+                    variant="section-title"
+                  >
+                    GitHub Featured Projects
+                  </Heading>
+                </HStack>
+
+                <SimpleGrid columns={[1, 1, 2]} gap={6}>
+                  {featuredRepos.map(repo => (
+                    <motion.div
+                      key={repo.id}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <GitHubRepoItem repo={repo} />
+                    </motion.div>
+                  ))}
+                </SimpleGrid>
+              </Box>
+            </motion.div>
+          </Section>
+        )}
 
         {repos.length > 0 && (
           <Section>

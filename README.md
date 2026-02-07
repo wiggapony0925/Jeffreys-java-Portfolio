@@ -1,6 +1,6 @@
 # Jeffrey Fernandez — Software Engineer Portfolio
 
-> Personal portfolio website built with Next.js, Chakra UI, Three.js, and Framer Motion — showcasing software engineering projects, professional experience, and technical skills.
+> Personal portfolio website built with Next.js, Chakra UI, Three.js, and Framer Motion — showcasing software engineering projects, professional experience, and technical skills. Features live GitHub integration that dynamically displays repositories and highlights featured projects tagged with a custom topic.
 
 🌐 **Live Site:** [jeffreys-java-portfolio.vercel.app](https://jeffreys-java-portfolio.vercel.app)
 
@@ -28,6 +28,21 @@ I'm also the **Founder & Lead Software Engineer** at **JFM Capital Group LLC (Pu
 | **Animation**   | [Framer Motion](https://www.framer.com/motion/) — Production-ready React animations      |
 | **Deployment**  | [Vercel](https://vercel.com/) — Optimized hosting for Next.js                            |
 | **Analytics**   | [Vercel Analytics](https://vercel.com/analytics) — Privacy-friendly web analytics         |
+
+---
+
+## GitHub Featured Projects
+
+The portfolio includes a **GitHub Featured Projects** section that automatically highlights repositories tagged with the `jeffreys_repo` topic. This allows you to curate which GitHub repositories appear in the featured section directly from GitHub — no code changes needed.
+
+### How It Works
+
+1. Go to any GitHub repository you want to feature.
+2. Click **Settings** → Under **General**, find the **Topics** field.
+3. Add the topic `jeffreys_repo` and save.
+4. The portfolio will automatically pick up the tagged repo and display it in the **GitHub Featured Projects** section above the full repository list.
+
+This is a clean, maintainable approach — it uses GitHub's existing topic/tagging system as a lightweight CMS, keeping the portfolio content in sync with your GitHub presence without hardcoding repository names.
 
 ---
 
